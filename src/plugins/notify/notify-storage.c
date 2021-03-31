@@ -308,7 +308,7 @@ void notify_plugin_init_storage(struct module *module)
 	// i_debug("mail_storage_hooks_add - module name: %s", module->name);
 	mail_storage_hooks_add(module, &notify_mail_storage_hooks);
 	i_debug("mail_storage_hooks_add2");
-	i_debug("mail_storage_hooks_add2 - module name: %s", module->name);
+	// i_debug("mail_storage_hooks_add2 - module name: %s", module->name);
 }
 
 void notify_plugin_deinit_storage(void)

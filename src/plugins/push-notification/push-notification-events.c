@@ -20,7 +20,6 @@ push_notification_event_find(const char *name, unsigned int *idx_r)
     
     events = array_get(&push_notification_events, &count);
     for (i = 0; i < count; i++) {
-        i_debug ("EventName: %s", events[i]->name);
         if (strcasecmp(events[i]->name, name) == 0) {
             *idx_r = i;
             return TRUE;
@@ -57,6 +56,7 @@ push_notification_event_init(struct push_notification_driver_txn *dtxn,
     }
 
     event = push_notification_event_find_class(event_name);
+    i_debug ("Event Init: %s", event_name);
     if (event != NULL) {
         if ((config == NULL) &&
             (event->init.default_config != NULL)) {

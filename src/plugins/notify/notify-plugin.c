@@ -156,7 +156,7 @@ void notify_contexts_mailbox_create(struct mailbox *box)
 		if (ctx->v.mailbox_create != NULL)
 			ctx->v.mailbox_create(box);
 	}
-	i_debug("Notify - notify_contexts_mailbox_create: box->name");
+	i_debug("Notify - notify_contexts_mailbox_create: %s", box->name);
 }
 
 void notify_contexts_mailbox_update(struct mailbox *box)
@@ -212,6 +212,8 @@ void notify_contexts_mailbox_rename(struct mailbox *src, struct mailbox *dest)
 		if (ctx->v.mailbox_rename != NULL)
 			ctx->v.mailbox_rename(src, dest);
 	}
+	i_debug("Notify - notify_contexts_mailbox_rename - src: %s - %s", src->name, src->vname);
+	i_debug("Notify - notify_contexts_mailbox_rename - dest: %s - %s", dest->name, dest->vname);
 }
 
 void notify_contexts_mailbox_set_subscribed(struct mailbox *box,

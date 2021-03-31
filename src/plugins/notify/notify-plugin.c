@@ -148,7 +148,7 @@ void notify_contexts_mail_transaction_rollback(struct mailbox_transaction_contex
 	}
 }
 
-void notify_contexts_mailbox_create(struct mailbox *box)
+void notify_contexts_mailbox_create(struct mailbox *box) 
 {
 	struct notify_context *ctx;
 
@@ -156,6 +156,7 @@ void notify_contexts_mailbox_create(struct mailbox *box)
 		if (ctx->v.mailbox_create != NULL)
 			ctx->v.mailbox_create(box);
 	}
+	i_debug("Notify - notify_contexts_mailbox_create: box->name");
 }
 
 void notify_contexts_mailbox_update(struct mailbox *box)

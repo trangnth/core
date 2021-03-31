@@ -156,7 +156,7 @@ void notify_contexts_mailbox_create(struct mailbox *box)
 		if (ctx->v.mailbox_create != NULL)
 			ctx->v.mailbox_create(box);
 	}
-	i_debug("Notify - notify_contexts_mailbox_create: %s", box->name);
+	i_debug("Notify - notify_contexts_mailbox_create: %s", &box->name);
 }
 
 void notify_contexts_mailbox_update(struct mailbox *box)

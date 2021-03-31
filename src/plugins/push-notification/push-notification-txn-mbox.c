@@ -42,10 +42,13 @@ push_notification_txn_mbox_get_eventdata(struct push_notification_txn_mbox *mbox
                                          const char *event_name)
 {
     struct push_notification_txn_event **mevent;
-
+    i_debug ("Eventttt: %s", event_name);
     if (array_is_created(&mbox->eventdata)) {
         array_foreach_modifiable(&mbox->eventdata, mevent) {
             if (strcmp((*mevent)->event->event->name, event_name) == 0) {
+                i_debug ("Event_nameeee: %s", (*mevent)->event->event->name));
+                i_debug ("Event_nameeee mailbox: %s", &mbox->mailbox);
+                i_debug ("Event_nameeee data: %s", (*mevent)->data);
                 return (*mevent)->data;
             }
         }

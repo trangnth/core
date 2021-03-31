@@ -17,9 +17,10 @@ push_notification_event_find(const char *name, unsigned int *idx_r)
     const struct push_notification_event *const *events;
 
     i_debug ("Event: %s", name);
-    i_debug ("EventName: %s", events[i]->name);
+    
     events = array_get(&push_notification_events, &count);
     for (i = 0; i < count; i++) {
+        i_debug ("EventName: %s", events[i]->name);
         if (strcasecmp(events[i]->name, name) == 0) {
             *idx_r = i;
             return TRUE;

@@ -42,6 +42,7 @@ static ARRAY(const struct mail_storage_hooks *) internal_hooks = ARRAY_INIT;
 
 void mail_storage_hooks_init(void)
 {
+	i_debug("Hook debug - mail_storage_hooks_init");
 	if (!array_is_created(&module_hooks))
 		i_array_init(&module_hooks, 32);
 	i_array_init(&internal_hooks, 8);
@@ -63,6 +64,7 @@ void mail_storage_hooks_add(struct module *module,
 			    const struct mail_storage_hooks *hooks)
 {
 	struct mail_storage_module_hooks new_hook;
+	i_debug("mail_storage_hooks_add - module name: %s", );
 
 	memset(&new_hook, 0, sizeof(new_hook));
 	new_hook.module = module;

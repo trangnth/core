@@ -213,8 +213,10 @@ void notify_contexts_mailbox_rename(struct mailbox *src, struct mailbox *dest)
 		if (ctx->v.mailbox_rename != NULL)
 			ctx->v.mailbox_rename(src, dest);
 	}
-	i_debug("Notify - notify_contexts_mailbox_rename - src: %s - %s", src->name, src->vname);
-	i_debug("Notify - notify_contexts_mailbox_rename - dest: %s - %s", dest->name, dest->vname);
+	// i_debug("Notify - notify_contexts_mailbox_rename - src: %s - %s", src->name, src->vname);
+	i_debug("Notify - notify_contexts_mailbox_rename - src:");
+	// i_debug("Notify - notify_contexts_mailbox_rename - dest: %s - %s", dest->name, dest->vname);
+	i_debug("Notify - notify_contexts_mailbox_rename - dest:");
 }
 
 void notify_contexts_mailbox_set_subscribed(struct mailbox *box,

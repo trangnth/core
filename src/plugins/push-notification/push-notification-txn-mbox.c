@@ -15,9 +15,11 @@ push_notification_txn_mbox_create(struct push_notification_txn *txn,
 {
     if (txn->mbox_txn == NULL) {
         i_debug("MBBOOOOOXX - push_notification_txn_mbox_create"); 
+        
         txn->mbox_txn = p_new(txn->pool, struct push_notification_txn_mbox, 1);
         txn->mbox_txn->mailbox = mailbox_get_vname(box);
         i_debug("trangggg ne 1: %s", txn->mbox_txn->mailbox);
+        // i_debug("trangggg ne 2: %s", txn->mbox_txn->mailbox); 
     }
 
     return txn->mbox_txn;
@@ -84,6 +86,9 @@ push_notification_txn_mbox_deinit_eventdata
 (struct push_notification_txn_mbox *mbox)
 {
     struct push_notification_txn_event **mevent;
+    i_debug ("TRANG - push_notification_txn_mbox_deinit_eventdata");
+    int a = array_is_created(&mbox->eventdata);
+    print ("Tranggg - array_is_created: %d", a);
 
     if (array_is_created(&mbox->eventdata)) {
         array_foreach_modifiable(&mbox->eventdata, mevent) {

@@ -104,6 +104,7 @@ static void push_notification_transaction_commit
     struct push_notification_txn *ptxn = (struct push_notification_txn *)txn;
 
     if (changes == NULL) {
+        i_debug ("TRANNNG - push_notification_transaction_commit");
         push_notification_txn_mbox_end(ptxn);
     } else {
         push_notification_txn_msg_end(ptxn, changes);
@@ -145,6 +146,7 @@ static void push_notification_mailbox_subscribe(struct mailbox *box,
                                                 bool subscribed)
 {
     struct push_notification_txn *ptxn;
+    i_debug ("TRANGA - push_notification_mailbox_subscribe");
 
     ptxn = push_notification_transaction_create(box, NULL);
     push_notification_trigger_mbox_subscribe(ptxn, box, subscribed, NULL);

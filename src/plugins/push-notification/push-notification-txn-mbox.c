@@ -27,7 +27,7 @@ void
 push_notification_txn_mbox_end(struct push_notification_txn *ptxn)
 {
     struct push_notification_driver_txn **dtxn;
-    i_debug("TRANG - push_notification_txn_mbox_end")
+    i_debug("TRANG - push_notification_txn_mbox_end");
 
     if (ptxn->mbox_txn != NULL) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {

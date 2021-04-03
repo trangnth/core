@@ -34,6 +34,7 @@ static bool push_notification_driver_dlog_begin_txn
     i_debug("Called begin_txn push_notification plugin hook.");
 
     array_foreach(&push_notification_events, event) {
+        i_debug ("DLOGGGG: %s", (*event)->name);
         push_notification_event_init(dtxn, (*event)->name, NULL);
     }
 

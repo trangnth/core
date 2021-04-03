@@ -18,6 +18,7 @@ push_notification_trigger_mbox_common(struct push_notification_txn *txn,
                                       struct push_notification_txn_mbox **mbox,
                                       enum push_notification_event_trigger trigger)
 {
+    i_debug ("TRANGGG - push_notification_trigger_mbox_common");   
     if (*mbox == NULL) {
         *mbox = push_notification_txn_mbox_create(txn, box);
     }
@@ -69,6 +70,7 @@ push_notification_trigger_mbox_rename(struct push_notification_txn *txn,
                                       struct mailbox *dest,
                                       struct push_notification_txn_mbox *mbox)
 {
+    i_debug ("TRTAN - push_notification_trigger_mbox_rename");
     struct push_notification_event_config **ec;
 
     push_notification_trigger_mbox_common(txn, dest, &mbox,

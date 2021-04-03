@@ -89,9 +89,13 @@ push_notification_txn_msg_get_eventdata(struct push_notification_txn_msg *msg,
 {
     struct push_notification_txn_event **mevent;
 
+    int a = array_is_created(&msg->eventdata);
+    i_debug ("TTTTT - push_notification_txn_msg_get_eventdata: %d", a);
     if (array_is_created(&msg->eventdata)) {
         array_foreach_modifiable(&msg->eventdata, mevent) {
             if (strcmp((*mevent)->event->event->name, event_name) == 0) {
+                i_debug ("TTTTT - push_notification_txn_msg_get_eventdata - event name: %s", event_name);
+                i_debug ("TTTTT - push_notification_txn_msg_get_eventdata - data: %s", (*mevent)->data);
                 return (*mevent)->data;
             }
         }

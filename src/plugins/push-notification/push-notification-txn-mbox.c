@@ -88,7 +88,7 @@ push_notification_txn_mbox_deinit_eventdata
     struct push_notification_txn_event **mevent;
     i_debug ("TRANG - push_notification_txn_mbox_deinit_eventdata");
     int a = array_is_created(&mbox->eventdata);
-    print ("Tranggg - array_is_created: %d", a);
+    i_debug ("Tranggg - array_is_created: %d", a);
 
     if (array_is_created(&mbox->eventdata)) {
         array_foreach_modifiable(&mbox->eventdata, mevent) {

@@ -17,6 +17,7 @@ push_notification_driver_find(const char *name, unsigned int *idx_r)
 {
     unsigned int count, i;
     const struct push_notification_driver *const *drivers;
+    i_debug("push_notification_driver_find - %s", name);
 
     drivers = array_get(&push_notification_drivers, &count);
     for (i = 0; i < count; i++) {
@@ -88,6 +89,7 @@ push_notification_driver_init(struct mail_user *user, const char *config_in,
     struct push_notification_driver_user *duser;
     int ret;
 
+    i_debug("push_notification_driver_init - XXXXX");
     /* <driver>[:<driver config>] */
     p = strchr(config_in, ':');
     if (p == NULL) {

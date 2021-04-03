@@ -91,10 +91,12 @@ push_notification_trigger_mbox_subscribe(struct push_notification_txn *txn,
 {
     struct push_notification_event_config **ec;
 
+    i_debug ("TRTAN");
     push_notification_trigger_mbox_common(txn, box, &mbox,
                                           PUSH_NOTIFICATION_EVENT_TRIGGER_MBOX_SUBSCRIBE);
 
     if (array_is_created(&txn->events)) {
+        i_debug ("OOOOOO");
         array_foreach_modifiable(&txn->events, ec) {
             if (subscribed == TRUE) {
                 if ((*ec)->event->mbox_triggers.subscribe != NULL) {

@@ -24,7 +24,7 @@ push_notification_trigger_mbox_common(struct push_notification_txn *txn,
     }
 
     txn->trigger |= trigger;
-    i_debug ("TRAANAG - %s", trigger);
+    // i_debug ("TRAANAG - %s", trigger);
 }
 
 void
@@ -76,8 +76,8 @@ push_notification_trigger_mbox_rename(struct push_notification_txn *txn,
 
     push_notification_trigger_mbox_common(txn, dest, &mbox,
                                           PUSH_NOTIFICATION_EVENT_TRIGGER_MBOX_RENAME);
-    int a = array_is_created(&txn->events);
-    i_debug ("TRASNG - array_is_created: %d", a);
+    // int a = array_is_created(&txn->events);
+    // i_debug ("TRASNG - array_is_created: %d", a);
 
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {

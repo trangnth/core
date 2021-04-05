@@ -139,6 +139,7 @@ static void push_notification_mailbox_rename(struct mailbox *src,
     struct push_notification_txn *ptxn;
 
     ptxn = push_notification_transaction_create(dest, NULL);
+    push_notification_transaction_init(ptxn);
     push_notification_trigger_mbox_rename(ptxn, src, dest, NULL);
     push_notification_transaction_commit(ptxn, NULL);
 }

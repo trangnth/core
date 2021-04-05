@@ -24,7 +24,7 @@ push_notification_trigger_mbox_common(struct push_notification_txn *txn,
     }
 
     txn->trigger |= trigger;
-    // i_debug ("TRAANAG - %s", trigger);
+    i_debug ("TRAANAG - %s", trigger);
 }
 
 void

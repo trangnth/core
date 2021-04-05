@@ -218,9 +218,9 @@ void notify_contexts_mailbox_rename(struct mailbox *src, struct mailbox *dest)
 	// i_debug("Notify - notify_contexts_mailbox_rename - dest: %s - %s", dest->name, dest->vname);
 	i_debug("Notify - notify_contexts_mailbox_rename - src:");
 	i_debug("Notify - notify_contexts_mailbox_rename - dest:");
-	i_info("Notify Mailbox renamed: %s -> %s",
-	       mailbox_get_vname(src),
-	       mailbox_get_vname(dest));
+	// i_info("Notify Mailbox renamed: %s -> %s",
+	//        mailbox_get_vname(src),
+	//        mailbox_get_vname(dest));
 }
 
 void notify_contexts_mailbox_set_subscribed(struct mailbox *box,

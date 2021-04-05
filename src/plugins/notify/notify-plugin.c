@@ -211,6 +211,7 @@ void notify_contexts_mailbox_rename(struct mailbox *src, struct mailbox *dest)
 
 	for (ctx = ctx_list; ctx != NULL; ctx = ctx->next) {
 		if (ctx->v.mailbox_rename != NULL)
+			i_debug ("Notify - notify_contexts_mailbox_rename");
 			ctx->v.mailbox_rename(src, dest);
 	}
 	// i_debug("Notify - notify_contexts_mailbox_rename - src: %s - %s", src->name, src->vname);

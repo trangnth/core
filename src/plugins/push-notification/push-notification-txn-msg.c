@@ -115,7 +115,7 @@ push_notification_txn_msg_set_eventdata(struct push_notification_txn *txn,
     if (!array_is_created(&msg->eventdata)) {
         p_array_init(&msg->eventdata, txn->pool, 4);
     }
-
+    i_debug ("MSG - push_notification_txn_msg_set_eventdata");
     mevent = p_new(txn->pool, struct push_notification_txn_event, 1);
     mevent->data = data;
     mevent->event = event;
@@ -128,6 +128,7 @@ push_notification_txn_msg_deinit_eventdata(struct push_notification_txn_msg *msg
 {
     struct push_notification_txn_event **mevent;
 
+    i_debug ("MSG - push_notification_txn_msg_deinit_eventdata");
     if (array_is_created(&msg->eventdata)) {
         array_foreach_modifiable(&msg->eventdata, mevent) {
             if (((*mevent)->data != NULL) &&

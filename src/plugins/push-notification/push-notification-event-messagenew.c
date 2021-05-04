@@ -86,7 +86,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
 
     if ((data->msgid == NULL) && 
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_MSGID) &&
-        (mail_get_first_header(mail, "Message-ID", &value) >= 0)) {
+        (mail_get_first_header(mail, "To", &value) >= 0)) {
         data->msgid = p_strdup(ptxn->pool, value);
     }
 

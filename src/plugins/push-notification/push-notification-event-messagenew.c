@@ -101,7 +101,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         (mail_get_first_header(mail, "To", &value) >= 0)) {
         data->to = p_strdup(ptxn->pool, value);
     }
-    i_debug ("TRAAAAAAAAA - data->to: %c", data->to);
+    i_debug ("TRAAAAAAAAA - data->to: %c", value);
 
     if ((data->from == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_FROM) &&

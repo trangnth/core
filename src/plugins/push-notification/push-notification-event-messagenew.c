@@ -69,6 +69,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
     time_t date;
     int tz;
     const char *value;
+    i_debug ("TRAAAAAAAA - push_notification_event_messagenew_event");
 
     if (!config->flags) {
         return;
@@ -82,6 +83,14 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
 
         push_notification_txn_msg_set_eventdata(ptxn, msg, ec, data);
     }
+
+    if ((data->msgid == NULL) &&
+        (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_MSGID) &&
+        (mail_get_first_header(mail, "Message-ID", &value) >= 0)) {
+        data->msgid = p_strdup(ptxn->pool, value);
+    }
+
+    i_debug ("TRAAAAAAAAA - data->msgid: %c", data->msgid);
 
     if ((data->to == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_TO) &&

@@ -23,6 +23,9 @@ struct push_notification_event_messagenew_data {
     int date_tz;
     /* PUSH_NOTIFICATION_MESSAGE_BODY_SNIPPET */
     const char *snippet;
+
+    /* PUSH_NOTIFICATION_MESSAGE_HDR_MESSAGEID */
+    const char *msgid;
 };
 
 

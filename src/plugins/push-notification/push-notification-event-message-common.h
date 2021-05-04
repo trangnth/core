@@ -15,6 +15,8 @@ enum push_notification_event_message_flags {
     PUSH_NOTIFICATION_MESSAGE_HDR_DATE = 0x08,
     /* Body: Snippet */
     PUSH_NOTIFICATION_MESSAGE_BODY_SNIPPET = 0x10
+    /* Header: Message-ID */
+    PUSH_NOTIFICATION_MESSAGE_HDR_MSGID = 0x20
 };
 
 

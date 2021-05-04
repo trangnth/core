@@ -18,10 +18,8 @@ push_notification_trigger_mbox_common(struct push_notification_txn *txn,
                                       struct push_notification_txn_mbox **mbox,
                                       enum push_notification_event_trigger trigger)
 {
-    i_debug ("TRANGGG - push_notification_trigger_mbox_common");   
     if (*mbox == NULL) {
         *mbox = push_notification_txn_mbox_create(txn, box);
-        i_debug ("TRANGGG - push_notification_trigger_mbox_common 2"); 
     }
 
     txn->trigger |= trigger;
@@ -71,13 +69,10 @@ push_notification_trigger_mbox_rename(struct push_notification_txn *txn,
                                       struct mailbox *dest,
                                       struct push_notification_txn_mbox *mbox)
 {
-    i_debug ("TRTAN - push_notification_trigger_mbox_rename");
     struct push_notification_event_config **ec;
 
     push_notification_trigger_mbox_common(txn, dest, &mbox,
                                           PUSH_NOTIFICATION_EVENT_TRIGGER_MBOX_RENAME);
-    int a = array_is_created(&txn->events);
-    i_debug ("TRASNG - push_notification_trigger_mbox_rename - array_is_created: %d", a);
 
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
@@ -96,12 +91,10 @@ push_notification_trigger_mbox_subscribe(struct push_notification_txn *txn,
 {
     struct push_notification_event_config **ec;
 
-    i_debug ("TRTAN - push_notification_trigger_mbox_subscribe");
     push_notification_trigger_mbox_common(txn, box, &mbox,
                                           PUSH_NOTIFICATION_EVENT_TRIGGER_MBOX_SUBSCRIBE);
 
     if (array_is_created(&txn->events)) {
-        i_debug ("OOOOOO");
         array_foreach_modifiable(&txn->events, ec) {
             if (subscribed == TRUE) {
                 if ((*ec)->event->mbox_triggers.subscribe != NULL) {
@@ -122,6 +115,7 @@ push_notification_trigger_msg_common(struct push_notification_txn *txn,
                                      struct push_notification_txn_msg **msg,
                                      enum push_notification_event_trigger trigger)
 {
+    i_debug ("DDDDDD - push_notification_trigger_msg_common");
     if (*msg == NULL) {
         *msg = push_notification_txn_msg_create(txn, mail);
     }
@@ -135,6 +129,7 @@ push_notification_trigger_msg_save_new(struct push_notification_txn *txn,
                                        struct push_notification_txn_msg *msg)
 {
     struct push_notification_event_config **ec;
+    i_debug ("CCCCCC - push_notification_trigger_msg_save_new");
 
     push_notification_trigger_msg_common(txn, mail, &msg,
                                          PUSH_NOTIFICATION_EVENT_TRIGGER_MSG_SAVE_NEW);

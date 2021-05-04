@@ -32,7 +32,8 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct push_notification_driver_txn *dtxn;
     struct push_notification_driver_user **duser;
     struct mail_storage *storage;
-    i_debug ("Tranggg - push_notification_transaction_init");
+    i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
+
     if (ptxn->initialized) {
         return;
     }
@@ -67,7 +68,6 @@ push_notification_transaction_create(struct mailbox *box,
     struct mail_storage *storage;
 
     pool = pool_alloconly_create("push notification transaction", 2048);
-    i_debug ("TRANAGGG - push_notification_transaction_create");
 
     ptxn = p_new(pool, struct push_notification_txn, 1);
     ptxn->mbox = box;
@@ -87,7 +87,7 @@ static void push_notification_transaction_end
 (struct push_notification_txn *ptxn, bool success)
 {
     struct push_notification_driver_txn **dtxn;
-    i_debug ("TRAANG - push_notification_transaction_end");
+
     if (ptxn->initialized) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
             if ((*dtxn)->duser->driver->v.end_txn != NULL) {
@@ -105,7 +105,6 @@ static void push_notification_transaction_commit
     struct push_notification_txn *ptxn = (struct push_notification_txn *)txn;
 
     if (changes == NULL) {
-        i_debug ("TRANNNG - push_notification_transaction_commit");
         push_notification_txn_mbox_end(ptxn);
     } else {
         push_notification_txn_msg_end(ptxn, changes);
@@ -150,7 +149,6 @@ static void push_notification_mailbox_subscribe(struct mailbox *box,
                                                 bool subscribed)
 {
     struct push_notification_txn *ptxn;
-    i_debug ("TRANGA - push_notification_mailbox_subscribe");
 
     ptxn = push_notification_transaction_create(box, NULL);
     push_notification_transaction_init(ptxn);
@@ -160,6 +158,7 @@ static void push_notification_mailbox_subscribe(struct mailbox *box,
 
 static void push_notification_mail_save(void *txn, struct mail *mail)
 {
+    i_debug ("BBBBBBBBBBBBB - push_notification_mail_save");
     struct push_notification_txn *ptxn = txn;
 
     push_notification_transaction_init(ptxn);

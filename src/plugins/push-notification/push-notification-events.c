@@ -16,8 +16,6 @@ push_notification_event_find(const char *name, unsigned int *idx_r)
     unsigned int count, i;
     const struct push_notification_event *const *events;
 
-    i_debug ("Event: %s", name);
-    
     events = array_get(&push_notification_events, &count);
     for (i = 0; i < count; i++) {
         if (strcasecmp(events[i]->name, name) == 0) {
@@ -50,14 +48,12 @@ push_notification_event_init(struct push_notification_driver_txn *dtxn,
 {
     const struct push_notification_event *event;
     struct push_notification_event_config *ec;
-    i_debug ("Event Init 1: %s", event_name);
 
     if (!array_is_created(&dtxn->ptxn->events)) {
         p_array_init(&dtxn->ptxn->events, dtxn->ptxn->pool, 4);
     }
 
     event = push_notification_event_find_class(event_name);
-    i_debug ("Event Init 2: %s", event_name);
     if (event != NULL) {
         if ((config == NULL) &&
             (event->init.default_config != NULL)) {

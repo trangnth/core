@@ -63,13 +63,13 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
                                          struct push_notification_txn_msg *msg,
                                          struct mail *mail)
 {
+    i_debug ("0000000 - push_notification_event_messagenew_event");
     struct push_notification_event_messagenew_config *config =
         (struct push_notification_event_messagenew_config *)ec->config;
     struct push_notification_event_messagenew_data *data;
     time_t date;
     int tz;
     const char *value;
-    i_debug ("TRAAAAAAAA - push_notification_event_messagenew_event");
 
     if (!config->flags) {
         return;

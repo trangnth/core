@@ -102,12 +102,12 @@ static void push_notification_event_flagsset_flags_event(
     flags = mail_get_flags(mail);
 
     string_t *text;
-    text = t_str_new(128);
+    // text = t_str_new(128);
     str_append(text, "trang na ");
     // imap_write_flags(text, mail_get_flags(mail),
 	// 			 mail_get_keywords(mail));
     // str_truncate(text, str_len(text)-2);
-    i_debug ("FFFFFFFFFFFF - flag: %s", text);
+    i_debug ("FFFFFFFFFFFF - flags: %s", text);
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
         if ((flags & flag_check_always[i]) &&

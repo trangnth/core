@@ -9,6 +9,8 @@
 #include "push-notification-events.h"
 #include "push-notification-event-flagsset.h"
 #include "push-notification-txn-msg.h"
+// #include "str.h"
+#include "imap-util.h"
 
 
 #define EVENT_NAME "FlagsSet"
@@ -89,6 +91,10 @@ static void push_notification_event_flagsset_flags_event(
     unsigned int i;
 
     flags = mail_get_flags(mail);
+    text = t_str_new(128);
+    imap_write_flags(text, mail_get_flags(mail),
+				 mail_get_keywords(mail));
+    i_debug ("FFFFFFFFFFFF - flag: %s", text);
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
         if ((flags & flag_check_always[i]) &&

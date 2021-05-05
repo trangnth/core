@@ -69,6 +69,13 @@ push_notification_event_messageappend_event(struct push_notification_txn *ptxn,
         push_notification_txn_msg_set_eventdata(ptxn, msg, ec, data);
     }
 
+    if ((data->msgid == NULL) &&
+        (mail_get_first_header(mail, "Message-ID", &value) >= 0)) {
+        data->msgid = p_strdup(ptxn->pool, value);
+    }
+
+    i_debug ("TRAAAAAAAAA msg append - data->msgid: %s", data->msgid);
+
     if ((data->to == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_TO) &&
         (mail_get_first_header(mail, "To", &value) >= 0)) {
@@ -85,6 +92,13 @@ push_notification_event_messageappend_event(struct push_notification_txn *ptxn,
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_SUBJECT) &&
         (mail_get_first_header(mail, "Subject", &value) >= 0)) {
         data->subject = p_strdup(ptxn->pool, value);
+    }
+
+    if ((data->date == -1) &&
+        (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_DATE) &&
+        (mail_get_date(mail, &date, &tz) >= 0)) {
+        data->date = date;
+        data->date_tz = tz;
     }
 
     if ((data->snippet == NULL) &&

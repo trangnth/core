@@ -187,6 +187,7 @@ push_notification_trigger_msg_flag_change(struct push_notification_txn *txn,
                                           struct push_notification_txn_msg *msg,
                                           enum mail_flags old_flags)
 {
+    i_debug ("GGGGGG - push_notification_trigger_msg_flag_change");
     struct push_notification_event_config **ec;
 
     push_notification_trigger_msg_common(txn, mail, &msg,

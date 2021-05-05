@@ -12,11 +12,11 @@
 
 #include "llist.h"
 #include "str.h"
-#include "str-sanitize.h"
+// #include "str-sanitize.h"
 // #include "imap-util.h"
-#include "mail-user.h"
-#include "mail-storage-private.h"
-#include "notify-plugin.h"
+// #include "mail-user.h"
+// #include "mail-storage-private.h"
+// #include "notify-plugin.h"
 // #include "mail-log-plugin.h"
 
 
@@ -66,6 +66,8 @@ push_notification_event_flagsset_get_data(struct push_notification_txn *ptxn,
 {
     struct push_notification_event_flagsset_data *data;
 
+    i_debug ("HHHHHHHHm - push_notification_event_flagsset_get_data");
+
     data = push_notification_txn_msg_get_eventdata(msg, EVENT_NAME);
     if (data == NULL) {
         data = p_new(ptxn->pool,
@@ -98,10 +100,13 @@ static void push_notification_event_flagsset_flags_event(
     unsigned int i;
 
     flags = mail_get_flags(mail);
+
     string_t *text;
     text = t_str_new(128);
+    str_append(text, "trang na ");
     imap_write_flags(text, mail_get_flags(mail),
 				 mail_get_keywords(mail));
+    str_truncate(text, str_len(text)-2);
     i_debug ("FFFFFFFFFFFF - flag: %s", text);
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
@@ -123,11 +128,14 @@ static void push_notification_event_flagsset_flags_event(
         flags_set |= MAIL_SEEN;
     }
 
-    /* Only create data element if at least one flag was set. */
-    if (flags_set) {
-        data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
-        data->flags_set |= flags_set;
-    }
+    // /* Only create data element if at least one flag was set. */
+    // if (flags_set) {
+    //     data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
+    //     data->flags_set |= flags_set;
+    // }
+
+    data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
+    data->flags_set |= flags_set;
 }
 
 static void push_notification_event_flagsset_keywords_event(

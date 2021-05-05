@@ -17,7 +17,7 @@
 #include "mail-user.h"
 #include "mail-storage-private.h"
 #include "notify-plugin.h"
-#include "mail-log-plugin.h"
+// #include "mail-log-plugin.h"
 
 
 #define EVENT_NAME "FlagsSet"

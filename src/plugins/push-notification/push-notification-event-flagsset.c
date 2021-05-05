@@ -98,6 +98,7 @@ static void push_notification_event_flagsset_flags_event(
     unsigned int i;
 
     flags = mail_get_flags(mail);
+    string_t *text;
     text = t_str_new(128);
     imap_write_flags(text, mail_get_flags(mail),
 				 mail_get_keywords(mail));

@@ -9,8 +9,15 @@
 #include "push-notification-events.h"
 #include "push-notification-event-flagsset.h"
 #include "push-notification-txn-msg.h"
-// #include "str.h"
+
+#include "llist.h"
+#include "str.h"
+#include "str-sanitize.h"
 #include "imap-util.h"
+#include "mail-user.h"
+#include "mail-storage-private.h"
+#include "notify-plugin.h"
+#include "mail-log-plugin.h"
 
 
 #define EVENT_NAME "FlagsSet"

@@ -85,11 +85,11 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
     }
 
     if ((data->msgid == NULL) &&
-        (mail_get_first_header(mail, "To", &value) >= 0)) {
+        (mail_get_first_header(mail, "Message-ID", &value) >= 0)) {
         data->msgid = p_strdup(ptxn->pool, value);
     }
 
-    i_debug ("TRAAAAAAAAA - data->msgid: %c", data->msgid);
+    i_debug ("TRAAAAAAAAA - data->msgid: %s", data->msgid);
     // mail_get_first_header(mail, "Message-ID", &value);
     // i_debug ("TRAAAAAAAAA - value: %s", value);
     // data->msgid = p_strdup(ptxn->pool, value);

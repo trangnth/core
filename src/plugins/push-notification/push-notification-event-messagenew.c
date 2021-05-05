@@ -84,24 +84,22 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         push_notification_txn_msg_set_eventdata(ptxn, msg, ec, data);
     }
 
-    if ((data->msgid == NULL) && 
-        (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_MSGID) &&
+    if ((data->msgid == NULL) &&
         (mail_get_first_header(mail, "To", &value) >= 0)) {
         data->msgid = p_strdup(ptxn->pool, value);
     }
 
     i_debug ("TRAAAAAAAAA - data->msgid: %c", data->msgid);
-    mail_get_first_header(mail, "Message-ID", &value);
-    i_debug ("TRAAAAAAAAA - value: %s", value);
-    data->msgid = p_strdup(ptxn->pool, value);
-    i_debug ("TRAAAAAAAAA - data->msgid 222222: %s", data->msgid);
+    // mail_get_first_header(mail, "Message-ID", &value);
+    // i_debug ("TRAAAAAAAAA - value: %s", value);
+    // data->msgid = p_strdup(ptxn->pool, value);
+    // i_debug ("TRAAAAAAAAA - data->msgid 222222: %s", data->msgid);
 
     if ((data->to == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_TO) &&
         (mail_get_first_header(mail, "To", &value) >= 0)) {
         data->to = p_strdup(ptxn->pool, value);
     }
-    i_debug ("TRAAAAAAAAA - data->to: %s", value);
 
     if ((data->from == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_FROM) &&

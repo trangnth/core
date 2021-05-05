@@ -128,14 +128,14 @@ static void push_notification_event_flagsset_flags_event(
         flags_set |= MAIL_SEEN;
     }
 
-    // /* Only create data element if at least one flag was set. */
-    // if (flags_set) {
-    //     data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
-    //     data->flags_set |= flags_set;
-    // }
+    /* Only create data element if at least one flag was set. */
+    if (flags_set) {
+        data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
+        data->flags_set |= flags_set;
+    }
 
-    data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
-    data->flags_set |= flags_set;
+    // data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
+    // data->flags_set |= flags_set;
 }
 
 static void push_notification_event_flagsset_keywords_event(

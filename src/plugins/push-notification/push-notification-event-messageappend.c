@@ -62,6 +62,14 @@ push_notification_event_messageappend_event(struct push_notification_txn *ptxn,
         return;
     }
 
+    struct tm *tm;
+
+    if (data->date != -1) {
+        tm = gmtime(&data->date);
+        i_debug("%s: Date [%s]", EVENT_NAME,
+                iso8601_date_create_tm(tm, data->date_tz));
+    }
+
     data = push_notification_txn_msg_get_eventdata(msg, EVENT_NAME);
     if (data == NULL) {
         data = p_new(ptxn->pool,

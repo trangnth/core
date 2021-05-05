@@ -145,6 +145,7 @@ static void push_notification_event_flagsset_keywords_event(
     struct mail *mail,
     const char *const *old_keywords)
 {
+    i_debug ("KKKKKm - push_notification_event_flagsset_keywords_event");
     struct push_notification_event_flagsset_data *data;
     const char *k, *const *keywords, *const *op;
 

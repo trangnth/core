@@ -121,14 +121,15 @@ static void push_notification_event_flagsset_flags_event(
     if (keywords != NULL) {
 		/* we have keywords too */
 		while (*keywords != NULL) {
+            str_append("$");
 			str_append(texta, *keywords);
-			str_append_c(texta, ' ');
+			str_append_c(texta, ', ');
 			keywords++;
 		}
 	}
 
 
-    
+    str_truncate(texta, str_len(texta)-2);
     i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
     string_t *textb;
     textb = t_str_new(128);
@@ -136,6 +137,11 @@ static void push_notification_event_flagsset_flags_event(
 				 mail_get_keywords(mail));
     // str_truncate(texta, str_len(texta)-2);
     i_debug ("FFFFFFFFFFFF - flags2: %s", str_c(textb));
+
+
+
+
+
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
         if ((flags & flag_check_always[i]) &&

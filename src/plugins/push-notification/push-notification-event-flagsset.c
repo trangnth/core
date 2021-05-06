@@ -103,7 +103,7 @@ static void push_notification_event_flagsset_flags_event(
 
     string_t *texta;
     texta = t_str_new(128);
-    str_append(texta, "trang na ");
+    // str_append(texta, "trang na ");
     if ((flags & MAIL_ANSWERED) != 0)
         str_append(texta, "\\\\Answered, ");
     if ((flags & MAIL_FLAGGED) != 0)
@@ -117,10 +117,13 @@ static void push_notification_event_flagsset_flags_event(
     if ((flags & MAIL_RECENT) != 0)
         str_append(texta, "\\\\Recent, ");
     
-    imap_write_flags(texta, flags,
+    i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
+    string_t *textb;
+    textb = t_str_new(128);
+    imap_write_flags(textb, flags,
 				 mail_get_keywords(mail));
     // str_truncate(texta, str_len(texta)-2);
-    i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
+    i_debug ("FFFFFFFFFFFF - flags2: %s", str_c(textb));
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
         if ((flags & flag_check_always[i]) &&

@@ -121,7 +121,7 @@ static void push_notification_event_flagsset_flags_event(
     if (keywords != NULL) {
 		/* we have keywords too */
 		while (*keywords != NULL) {
-            str_append("$");
+            str_append(texta, "$");
 			str_append(texta, *keywords);
 			str_append_c(texta, ', ');
 			keywords++;

@@ -193,14 +193,14 @@ push_notification_trigger_msg_flag_change(struct push_notification_txn *txn,
     push_notification_trigger_msg_common(txn, mail, &msg,
                                          PUSH_NOTIFICATION_EVENT_TRIGGER_MSG_FLAGCHANGE);
 
-    // if (array_is_created(&txn->events)) {
+    if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
             if ((*ec)->event->msg_triggers.flagchange != NULL) {
                 (*ec)->event->msg_triggers.flagchange(txn, *ec, msg, mail,
                                                       old_flags);
             }
         }
-    // }
+    }
 }
 
 void

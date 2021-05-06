@@ -104,29 +104,42 @@ static void push_notification_event_flagsset_flags_event(
     string_t *texta;
     texta = t_str_new(128);
     str_append(texta, "trang na ");
-    imap_write_flags(texta, mail_get_flags(mail),
-				 mail_get_keywords(mail));
+    if ((flags & MAIL_ANSWERED) != 0)
+        str_append(texta, "\\\\Answered, ");
+    if ((flags & MAIL_FLAGGED) != 0)
+        str_append(texta, "\\\\Flagged, ");
+    if ((flags & MAIL_DELETED) != 0)
+        str_append(texta, "\\\\Deleted, ");
+    if ((flags & MAIL_SEEN) != 0)
+        str_append(texta, "\\\\Seen, ");
+    if ((flags & MAIL_DRAFT) != 0)
+        str_append(texta, "\\\\Draft, ");
+    if ((flags & MAIL_RECENT) != 0)
+        str_append(texta, "\\\\Recent, ");
+    
+    // imap_write_flags(texta, mail_get_flags(mail),
+	// 			 mail_get_keywords(mail));
     // str_truncate(text, str_len(text)-2);
     i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
-        // if ((flags & flag_check_always[i]) &&
-        //     !(old_flags & flag_check_always[i])) {
+        if ((flags & flag_check_always[i]) &&
+            !(old_flags & flag_check_always[i])) {
             flags_set |= flag_check_always[i];
-        // }
+        }
     }
 
-    // if (!config->hide_deleted &&
-    //     (flags & MAIL_DELETED) &&
-    //     !(old_flags & MAIL_DELETED)) {
+    if (!config->hide_deleted &&
+        (flags & MAIL_DELETED) &&
+        !(old_flags & MAIL_DELETED)) {
         flags_set |= MAIL_DELETED;
-    // }
+    }
 
-    // if (!config->hide_seen &&
-    //     (flags & MAIL_SEEN) &&
-    //     !(old_flags & MAIL_SEEN)) {
+    if (!config->hide_seen &&
+        (flags & MAIL_SEEN) &&
+        !(old_flags & MAIL_SEEN)) {
         flags_set |= MAIL_SEEN;
-    // }
+    }
 
     /* Only create data element if at least one flag was set. */
     if (flags_set) {

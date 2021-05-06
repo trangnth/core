@@ -117,7 +117,7 @@ static void push_notification_event_flagsset_flags_event(
     if ((flags & MAIL_RECENT) != 0)
         str_append(texta, "\\\\Recent, ");
     
-    char *keywords = mail_get_keywords(mail);
+    const char *const *keywords = mail_get_keywords(mail);
     if (keywords != NULL) {
 		/* we have keywords too */
 		while (*keywords != NULL) {

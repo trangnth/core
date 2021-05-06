@@ -129,7 +129,7 @@ static void push_notification_event_flagsset_flags_event(
 	}
 
 
-    str_truncate(texta, str_len(texta)-2);
+    str_truncate(texta, str_len(texta)-1);
     i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
     string_t *textb;
     textb = t_str_new(128);

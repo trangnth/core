@@ -110,23 +110,23 @@ static void push_notification_event_flagsset_flags_event(
     i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
-        if ((flags & flag_check_always[i]) &&
-            !(old_flags & flag_check_always[i])) {
+        // if ((flags & flag_check_always[i]) &&
+        //     !(old_flags & flag_check_always[i])) {
             flags_set |= flag_check_always[i];
-        }
+        // }
     }
 
-    if (!config->hide_deleted &&
-        (flags & MAIL_DELETED) &&
-        !(old_flags & MAIL_DELETED)) {
+    // if (!config->hide_deleted &&
+    //     (flags & MAIL_DELETED) &&
+    //     !(old_flags & MAIL_DELETED)) {
         flags_set |= MAIL_DELETED;
-    }
+    // }
 
-    if (!config->hide_seen &&
-        (flags & MAIL_SEEN) &&
-        !(old_flags & MAIL_SEEN)) {
+    // if (!config->hide_seen &&
+    //     (flags & MAIL_SEEN) &&
+    //     !(old_flags & MAIL_SEEN)) {
         flags_set |= MAIL_SEEN;
-    }
+    // }
 
     /* Only create data element if at least one flag was set. */
     if (flags_set) {

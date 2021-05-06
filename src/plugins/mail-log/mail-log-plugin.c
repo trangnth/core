@@ -322,6 +322,7 @@ mail_log_append_mail_message(struct mail_log_mail_txn_context *ctx,
 			     struct mail *mail, enum mail_log_event event,
 			     const char *desc)
 {
+	i_debug ("TTTTAS - mail_log_append_mail_message: desc - %s , mail_log_event - %d", desc, event);
 	struct mail_log_user *muser =
 		MAIL_LOG_USER_CONTEXT(mail->box->storage->user);
 
@@ -394,13 +395,16 @@ static void mail_log_mail_update_flags(void *txn, struct mail *mail,
 	enum mail_flags new_flags = mail_get_flags(mail);
 
 	if (((old_flags ^ new_flags) & MAIL_DELETED) == 0) {
+		// ((old_flags != MAIL_DELETED) and (new_flags != MAIL_DELETED)) || (old_flags == new_flags)
 		mail_log_append_mail_message(ctx, mail,
 					     MAIL_LOG_EVENT_FLAG_CHANGE,
 					     "flag_change");
 	} else if ((old_flags & MAIL_DELETED) == 0) {
+		// (old_flags != (MAIL_DELETED && MAIL_FLAGS_MASK)) and (new_flags = MAIL_DELETED)
 		mail_log_append_mail_message(ctx, mail, MAIL_LOG_EVENT_DELETE,
 					     "delete");
 	} else {
+		// old_flags = (MAIL_DELETED || MAIL_FLAGS_MASK)
 		mail_log_append_mail_message(ctx, mail, MAIL_LOG_EVENT_UNDELETE,
 					     "undelete");
 	}

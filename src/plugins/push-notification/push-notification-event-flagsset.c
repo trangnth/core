@@ -117,7 +117,11 @@ static void push_notification_event_flagsset_flags_event(
     if ((flags & MAIL_RECENT) != 0)
         str_append(texta, "\\\\Recent, ");
     
-    i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
+    char *a = mail_get_keywords(mail);
+
+
+    
+    i_debug ("FFFFFFFFFFFF - flags: %s %s", str_c(texta), a);
     string_t *textb;
     textb = t_str_new(128);
     imap_write_flags(textb, flags,

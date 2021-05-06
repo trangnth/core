@@ -119,7 +119,7 @@ static void push_notification_event_flagsset_flags_event(
     
     imap_write_flags(texta, mail_get_flags(mail),
 				 mail_get_keywords(mail));
-    str_truncate(text, str_len(text)-2);
+    str_truncate(texta, str_len(text)-2);
     i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {

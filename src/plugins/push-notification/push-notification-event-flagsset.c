@@ -90,7 +90,7 @@ static void push_notification_event_flagsset_flags_event(
 {
     // test 
     struct list_push_notification_txn_context {
-        struct push_notification_txn *ptxn,
+        // struct push_notification_txn *ptxn;
         struct mail_log_message *messages, *messages_tail;
     };
     // struct mail_log_mail_txn_context *ctx =

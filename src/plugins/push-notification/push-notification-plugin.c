@@ -56,7 +56,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     array_foreach_modifiable(&tail->puser->driverlist->drivers, duser) {
         dtxn = p_new(tail->pool, struct push_notification_driver_txn, 1);
         dtxn->duser = *duser;
-        dtxn->tail = tail;
+        dtxn->ptxn = tail;
 
         if ((dtxn->duser->driver->v.begin_txn == NULL) ||
             dtxn->duser->driver->v.begin_txn(dtxn)) {

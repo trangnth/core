@@ -116,7 +116,8 @@ push_notification_trigger_msg_common(struct push_notification_txn *txn,
                                      enum push_notification_event_trigger trigger)
 {
     i_debug ("DDDDDD - push_notification_trigger_msg_common");
-    if (*msg == NULL) {
+    // if (*msg == NULL) {
+    if (TRUE) {
         *msg = push_notification_txn_msg_create(txn, mail);
     }
 

@@ -43,38 +43,38 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
 
     // ptxn->initialized = TRUE;
 
-    storage = mailbox_get_storage(p->mbox);
-    i_debug ("AAAAAAAAAA - mailbox storage: %s", p->mbox->name);
+    storage = mailbox_get_storage(ptxn->mbox);
+    i_debug ("AAAAAAAAAA - mailbox storage: %s", ptxn->mbox->name);
     if (storage->user->autocreated &&
         (strcmp(storage->name, "raw") == 0)) {
         /* no notifications for autocreated raw users */
         return;
     }
 
-    array_foreach_modifiable(&p->puser->driverlist->drivers, duser) {
-        dtxn = p_new(p->pool, struct push_notification_driver_txn, 1);
+    array_foreach_modifiable(&ptxn->puser->driverlist->drivers, duser) {
+        dtxn = p_new(ptxn->pool, struct push_notification_driver_txn, 1);
         dtxn->duser = *duser;
-        dtxn->ptxn = p;
+        dtxn->ptxn = ptxn;
 
         if ((dtxn->duser->driver->v.begin_txn == NULL) ||
             dtxn->duser->driver->v.begin_txn(dtxn)) {
-            array_append(&p->drivers, &dtxn, 1);
+            array_append(&ptxn->drivers, &dtxn, 1);
         }
     }
 
-    p -> next = NULL;
+    // p -> next = NULL;
 
-    if (ptxn->initialized) {
-        struct push_notification_txn *tail;
-        tail = ptxn;
-        while (tail->next != NULL){
-            tail = ptxn->next;
-        }
-    } else {
-        ptxn = p;
-    }
+    // if (ptxn->initialized) {
+    //     struct push_notification_txn *tail;
+    //     tail = ptxn;
+    //     while (tail->next != NULL){
+    //         tail = ptxn->next;
+    //     }
+    // } else {
+    //     ptxn = p;
+    // }
 
-    ptxn->initialized = TRUE;
+    // ptxn->initialized = TRUE;
 }
 
 static struct push_notification_txn *

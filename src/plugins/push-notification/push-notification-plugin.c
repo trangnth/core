@@ -35,7 +35,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
     struct push_notification_txn *tail, *p;
-    if (ptxn->initialized) {
+    if (!ptxn->initialized) {
         ptxn->next = NULL;
     }
 
@@ -70,7 +70,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     }
 
     p -> next = NULL;
-    if (ptxn->initialized) {
+    if (!ptxn->initialized) {
         ptxn = p;
         // return;
     } else {

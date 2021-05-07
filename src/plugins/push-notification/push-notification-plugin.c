@@ -87,6 +87,7 @@ static void push_notification_transaction_end
 (struct push_notification_txn *ptxn, bool success)
 {
     struct push_notification_driver_txn **dtxn;
+    i_debug("KKKKKKKKK - push_notification_transaction_end");
 
     if (ptxn->initialized) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
@@ -103,6 +104,7 @@ static void push_notification_transaction_commit
 (void *txn, struct mail_transaction_commit_changes *changes)
 {
     struct push_notification_txn *ptxn = (struct push_notification_txn *)txn;
+    i_debug ("KKKKKKKKKK - mail_transaction_commit_changes");
 
     if (changes == NULL) {
         push_notification_txn_mbox_end(ptxn);
@@ -195,9 +197,9 @@ push_notification_mail_update_flags(void *txn, struct mail *mail,
 
     push_notification_transaction_init(ptxn);
     push_notification_trigger_msg_flag_change(txn, mail, NULL, old_flags);
-    i_debug ("QQQQ - Before push_notification_transaction_commit");
-    push_notification_transaction_commit(ptxn, NULL);
-    i_debug ("QQQQ - After push_notification_transaction_commit");
+    // i_debug ("QQQQ - Before push_notification_transaction_commit");
+    // push_notification_transaction_commit(ptxn, NULL);
+    // i_debug ("QQQQ - After push_notification_transaction_commit");
 }
 
 static void

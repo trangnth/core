@@ -72,6 +72,7 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
                 value->uid = uid;
             }
         }
+        i_debug ("JJJJJJJJJJJJ - value->uid = %d, uid = %d", value->uid, uid);
 
         /* uid_validity is only set in changes if message is new. */
         if (changes->uid_validity == 0) {

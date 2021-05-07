@@ -55,6 +55,9 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
 
     hiter = hash_table_iterate_init(ptxn->messages);
     seq_range_array_iter_init(&siter, &changes->saved_uids);
+    array_foreach(&ptxn->events, event){
+        i_debug ("EVENTTTT : %s", event->event->name);
+    }
 
     i_debug ("JJJJJJJJJJJJ - push_notification_txn_msg_end");
     // /* uid_validity is only set in changes if message is new. */

@@ -89,16 +89,19 @@ static void push_notification_event_flagsset_flags_event(
     enum mail_flags old_flags)
 {
     // test 
-    struct mail_log_mail_txn_context {
-        pool_t pool;
+    struct list_push_notification_txn_context {
+        struct push_notification_txn *ptxn,
         struct mail_log_message *messages, *messages_tail;
     };
-    struct mail_log_mail_txn_context *ctx =
-		(struct mail_log_mail_txn_context *)txn;
+    // struct mail_log_mail_txn_context *ctx =
+	// 	(struct mail_log_mail_txn_context *)ptxn;
     // end test
-    mail_log_append_mail_message(ctx, mail,
-					     MAIL_LOG_EVENT_FLAG_CHANGE,
-					     "flag_change");
+    // mail_log_append_mail_message(ctx, mail,
+	// 				     MAIL_LOG_EVENT_FLAG_CHANGE,
+	// 				     "flag_change");
+
+
+
 
     struct push_notification_event_flagsset_config *config =
         (struct push_notification_event_flagsset_config *)ec->config;

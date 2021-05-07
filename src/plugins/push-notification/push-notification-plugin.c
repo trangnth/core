@@ -190,6 +190,7 @@ static void
 push_notification_mail_update_flags(void *txn, struct mail *mail,
                                     enum mail_flags old_flags)
 {
+    i_debug ("BBBBBBBBBBBBB - push_notification_mail_update_flags");
     struct push_notification_txn *ptxn = txn;
 
     push_notification_transaction_init(ptxn);

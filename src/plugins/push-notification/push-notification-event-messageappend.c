@@ -76,7 +76,7 @@ push_notification_event_messageappend_event(struct push_notification_txn *ptxn,
         data->msgid = p_strdup(ptxn->pool, value);
     }
 
-    i_debug ("TRAAAAAAAAA msg append - data->msgid: %s", data->msgid);
+    i_debug ("TRAAAAAAAA msg append - data->msgid: %s", data->msgid);
 
     if ((data->to == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_HDR_TO) &&

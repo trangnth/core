@@ -122,6 +122,7 @@ push_notification_txn_msg_set_eventdata(struct push_notification_txn *txn,
     struct push_notification_txn_event *mevent;
 
     if (!array_is_created(&msg->eventdata)) {
+        i_debug ("WWWWWWWWWW - push_notification_txn_msg_set_eventdata - array_isn't_created");
         p_array_init(&msg->eventdata, txn->pool, 4);
     }
 

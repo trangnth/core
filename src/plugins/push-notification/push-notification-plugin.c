@@ -35,7 +35,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
     struct push_notification_txn* tail;
-    while (tail != null){
+    while (tail != NULL){
         tail = ptxn->next;
     }
 

@@ -24,7 +24,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     }
 
     // if (msg == NULL) {
-    if (true) {
+    if (TRUE) {
         msg = p_new(txn->pool, struct push_notification_txn_msg, 1);
         msg->mailbox = mailbox_get_vname(mail->box);
         /* Save sequence number - used to determine UID later. */

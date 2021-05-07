@@ -56,6 +56,16 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
     hiter = hash_table_iterate_init(ptxn->messages);
     seq_range_array_iter_init(&siter, &changes->saved_uids);
 
+    i_debug ("%s- push_notification_txn_msg_end", LOG_LABEL);
+    // /* uid_validity is only set in changes if message is new. */
+    // if (changes->uid_validity == 0) {
+    //     mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+    //     uid_validity = status.uidvalidity;
+    // } else {
+    //     uid_validity = changes->uid_validity;
+    // }
+
+
     while (hash_table_iterate(hiter, ptxn->messages, &key, &value)) {
         if (value->uid == 0) {
             if (seq_range_array_iter_nth(&siter, value->seq, &uid)) {
@@ -90,6 +100,7 @@ push_notification_txn_msg_get_eventdata(struct push_notification_txn_msg *msg,
 {
     struct push_notification_txn_event **mevent;
 
+    i_debug ("%spush_notification_txn_msg_get_eventdata - event_name: %s", LOG_LABEL, event_name);
     if (array_is_created(&msg->eventdata)) {
         array_foreach_modifiable(&msg->eventdata, mevent) {
             if (strcmp((*mevent)->event->event->name, event_name) == 0) {

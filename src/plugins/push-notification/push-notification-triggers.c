@@ -192,7 +192,7 @@ push_notification_trigger_msg_flag_change(struct push_notification_txn *txn,
 
     push_notification_trigger_msg_common(txn, mail, &msg,
                                          PUSH_NOTIFICATION_EVENT_TRIGGER_MSG_FLAGCHANGE);
-
+    i_debug ("GGGGG 2222 - push_notification_trigger_msg_flag_change");
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
             if ((*ec)->event->msg_triggers.flagchange != NULL) {

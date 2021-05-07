@@ -34,13 +34,10 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct mail_storage *storage;
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
-    struct push_notification_txn* tail, *p;
+    struct push_notification_txn *tail, *p;
     if (ptxn->initialized) {
         ptxn->next = NULL;
-        // return;
     }
-
-    ptxn->initialized = TRUE;
 
     tail = ptxn;
     while (tail->next != NULL){
@@ -70,9 +67,17 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
             dtxn->duser->driver->v.begin_txn(dtxn)) {
             array_append(&p->drivers, &dtxn, 1);
         }
-        p -> next = NULL;
+    }
+
+    p -> next = NULL;
+    if (ptxn->initialized) {
+        ptxn = p;
+        // return;
+    } else {
         tail->next = p;
     }
+
+    ptxn->initialized = TRUE;
 }
 
 static struct push_notification_txn *

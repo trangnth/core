@@ -195,6 +195,9 @@ push_notification_mail_update_flags(void *txn, struct mail *mail,
 
     push_notification_transaction_init(ptxn);
     push_notification_trigger_msg_flag_change(txn, mail, NULL, old_flags);
+    i_debug ("QQQQ - Before push_notification_transaction_commit");
+    push_notification_transaction_commit(ptxn, NULL);
+    i_debug ("QQQQ - After push_notification_transaction_commit");
 }
 
 static void

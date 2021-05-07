@@ -34,14 +34,14 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct mail_storage *storage;
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
-    struct push_notification_txn *p;
+    // struct push_notification_txn *p;
     
 
-    // if (ptxn->initialized) {
-    //     return;
-    // }
+    if (ptxn->initialized) {
+        return;
+    }
 
-    // ptxn->initialized = TRUE;
+    ptxn->initialized = TRUE;
 
     storage = mailbox_get_storage(ptxn->mbox);
     i_debug ("AAAAAAAAAA - mailbox storage: %s", ptxn->mbox->name);

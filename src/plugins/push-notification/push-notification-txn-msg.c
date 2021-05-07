@@ -29,6 +29,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
         /* Save sequence number - used to determine UID later. */
         msg->seq = txn->t->save_count;
         msg->uid = mail->uid;
+        i_debug("EEEE - %d", msg->uid);
 
         hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
                           msg);

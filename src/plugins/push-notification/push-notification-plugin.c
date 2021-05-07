@@ -34,15 +34,8 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct mail_storage *storage;
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
-    struct push_notification_txn *tail, *p;
-    if (!ptxn->initialized) {
-        ptxn->next = NULL;
-    }
-
-    tail = ptxn;
-    while (tail->next != NULL){
-        tail = ptxn->next;
-    }
+    struct push_notification_txn *p;
+    
 
     // if (ptxn->initialized) {
     //     return;
@@ -70,11 +63,15 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     }
 
     p -> next = NULL;
-    if (!ptxn->initialized) {
-        ptxn = p;
-        // return;
+
+    if (ptxn->initialized) {
+        struct push_notification_txn *tail;
+        tail = ptxn;
+        while (tail->next != NULL){
+            tail = ptxn->next;
+        }
     } else {
-        tail->next = p;
+        ptxn = p;
     }
 
     ptxn->initialized = TRUE;

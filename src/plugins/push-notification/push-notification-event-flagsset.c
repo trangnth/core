@@ -12,6 +12,7 @@
 
 #include "llist.h"
 #include "str.h"
+#include "mail-log-plugin.h"
 // #include "str-sanitize.h"
 // #include "imap-util.h"
 // #include "mail-user.h"

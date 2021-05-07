@@ -41,6 +41,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     ptxn->initialized = TRUE;
 
     storage = mailbox_get_storage(ptxn->mbox);
+    i_debug ("AAAAAAAAAA - mailbox storage: %s", ptxn->mbox->name);
     if (storage->user->autocreated &&
         (strcmp(storage->name, "raw") == 0)) {
         /* no notifications for autocreated raw users */

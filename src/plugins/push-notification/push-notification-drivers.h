@@ -103,7 +103,7 @@ struct push_notification_txn {
 
     /* Private (used with message events). */
     struct mailbox_transaction_context *t;
-    struct push_notification_txn * next = NULL;
+    struct push_notification_txn * next;
 };
 
 

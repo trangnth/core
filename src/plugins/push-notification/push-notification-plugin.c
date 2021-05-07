@@ -34,15 +34,16 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct mail_storage *storage;
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
-    struct push_notification_txn* tail;
+    struct push_notification_txn* tail, *p;
     if (ptxn->initialized) {
         ptxn->next = NULL;
+        // return;
     }
 
-    // ptxn->initialized = TRUE;
+    ptxn->initialized = TRUE;
 
     tail = ptxn;
-    while (tail != NULL){
+    while (tail->next != NULL){
         tail = ptxn->next;
     }
 
@@ -52,24 +53,25 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
 
     // ptxn->initialized = TRUE;
 
-    storage = mailbox_get_storage(tail->mbox);
-    i_debug ("AAAAAAAAAA - mailbox storage: %s", tail->mbox->name);
+    storage = mailbox_get_storage(p->mbox);
+    i_debug ("AAAAAAAAAA - mailbox storage: %s", p->mbox->name);
     if (storage->user->autocreated &&
         (strcmp(storage->name, "raw") == 0)) {
         /* no notifications for autocreated raw users */
         return;
     }
 
-    array_foreach_modifiable(&tail->puser->driverlist->drivers, duser) {
-        dtxn = p_new(tail->pool, struct push_notification_driver_txn, 1);
+    array_foreach_modifiable(&p->puser->driverlist->drivers, duser) {
+        dtxn = p_new(p->pool, struct push_notification_driver_txn, 1);
         dtxn->duser = *duser;
-        dtxn->ptxn = tail;
+        dtxn->ptxn = p;
 
         if ((dtxn->duser->driver->v.begin_txn == NULL) ||
             dtxn->duser->driver->v.begin_txn(dtxn)) {
-            array_append(&tail->drivers, &dtxn, 1);
+            array_append(&p->drivers, &dtxn, 1);
         }
-        tail -> next = NULL;
+        p -> next = NULL;
+        tail->next = p;
     }
 }
 

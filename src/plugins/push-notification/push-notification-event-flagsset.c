@@ -164,6 +164,7 @@ static void push_notification_event_flagsset_flags_event(
 
     /* Only create data element if at least one flag was set. */
     if (flags_set) {
+        i_debug("FFFFFF 2222 - if flags_set ok");
         data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
         data->flags_set |= flags_set;
     }

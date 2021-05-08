@@ -23,8 +23,8 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
         hash_table_create_direct(&txn->messages, txn->pool, 4);
     }
 
-    if (msg == NULL) {
-    // if (TRUE) {
+    // if (msg == NULL) {
+    if (TRUE) {
         msg = p_new(txn->pool, struct push_notification_txn_msg, 1);
         msg->mailbox = mailbox_get_vname(mail->box);
     }
@@ -44,8 +44,9 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     // uid = p_new(txn->pool, struct push_notification_txn_msg_uid, 1);
     // uid->uid = msg->uid;
     // uid->seq = msg->seq;
-    u = p_strdup(txn->pool, msg->uid);
-    array_append(&msg->uids, &u, 1);
+    
+    // u = p_strdup(txn->pool, msg->uid);
+    // array_append(&msg->uids, &u, 1);
     i_debug("EEEE -> uid->uid: %d", u);
     
     // array_foreach(&msg->uids, u){

@@ -107,9 +107,7 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
         i_debug ("JJJJJJJJJJJJ - value->uid = %d, uid = %d, len_uids = %d", value->uid, uid, len);
         const uint32_t *u;
         array_foreach(&value->uids, u) {
-            if (u != 0){
-                i_debug("JJJJ 222 -> value->uid: [%d]", *u);
-            }
+            i_debug("JJJJ 222 -> value->uid: [%d]", *u);
         }
 
         /* uid_validity is only set in changes if message is new. */

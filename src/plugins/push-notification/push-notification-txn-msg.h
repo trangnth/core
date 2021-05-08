@@ -9,6 +9,8 @@ struct push_notification_event_config;
 struct push_notification_txn;
 struct push_notification_txn_event;
 
+ARRAY_DEFINE_TYPE(msg_uid, const uint32_t *);
+
 struct push_notification_txn_msg_uid {
     uint32_t *uid;
     /* Private */
@@ -21,7 +23,8 @@ struct push_notification_txn_msg {
     uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
-    ARRAY(struct push_notification_txn_msg_uid *) uids;
+    // ARRAY(struct push_notification_txn_msg_uid *) uids;
+    ARRAY_TYPE(msg_uid) uids;
 
     /* Private */
     unsigned int seq;

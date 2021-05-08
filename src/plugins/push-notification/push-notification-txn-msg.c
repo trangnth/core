@@ -33,15 +33,16 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     msg->seq = txn->t->save_count;
     msg->uid = mail->uid;
     i_debug("EEEE - uid = %d, seq = %d", msg->uid, msg->seq);
+    
     struct push_notification_txn_msg_uid *uid, *u;
     uid->uid = msg->uid;
     uid->seq = msg->seq;
     array_append(&msg->uids, &uid, 1);
     
-    // uint32_t u;
-    array_foreach(&msg->uids, u){
-        i_debug ("UUU 22:  %d", u->uid);
-    }
+    // // uint32_t u;
+    // array_foreach(&msg->uids, u){
+    //     i_debug ("UUU 22:  %d", u->uid);
+    // }
 
     hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
                         msg);

@@ -13,7 +13,7 @@ struct push_notification_txn_msg_uid {
     uint32_t uid;
     /* Private */
     unsigned int seq;
-}
+};
 
 struct push_notification_txn_msg {
     const char *mailbox;

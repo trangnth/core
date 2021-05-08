@@ -10,9 +10,9 @@ struct push_notification_txn;
 struct push_notification_txn_event;
 
 struct push_notification_txn_msg_uid {
-    uint32_t uid;
+    uint32_t *uid;
     /* Private */
-    unsigned int seq;
+    unsigned int *seq;
 };
 
 struct push_notification_txn_msg {

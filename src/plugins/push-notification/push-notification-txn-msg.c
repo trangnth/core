@@ -36,8 +36,8 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
 
     struct push_notification_txn_msg_uid *uid, *u;
     uid->uid = msg->uid;
-    // uid->seq = msg->seq;
-    // array_append(&msg->uids, &uid, 1);
+    uid->seq = msg->seq;
+    array_append(&msg->uids, &uid, 1);
     i_debug("EEEE -> uid->uid: %d", uid->uid);
     
     // // uint32_t u;

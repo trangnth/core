@@ -31,7 +31,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
         msg->seq = txn->t->save_count;
         msg->uid = mail->uid;
         i_debug("EEEE - %d", msg->uid);
-        array_append(&msg->uids, uid, 1);
+        array_append(&msg->uids, msg->uid, 1);
         
         uint32_t u;
         array_foreach(&msg->uids, u){

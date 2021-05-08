@@ -51,7 +51,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     unsigned int len;
     len = array_count(&msg->uids);
     i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
-    array_delete (&msg->uids, len-1, len);
+    // array_delete (&msg->uids, len-1, len);
     
     // array_foreach(&msg->uids, u){
     //     i_debug ("UUU 22:  %d", u->uid);

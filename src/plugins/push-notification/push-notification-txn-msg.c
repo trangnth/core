@@ -48,14 +48,16 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     u = msg->uid;
     // u = p_strdup(txn->pool, msg->uid);
     array_append(&msg->uids, &u, 1);
-    i_debug("EEEE -> uid->uid: %d", u);
+    len = array_count(&msg->uids);
+    i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
+    array_delete (&msg->uids, len-1, len);
     
     // array_foreach(&msg->uids, u){
     //     i_debug ("UUU 22:  %d", u->uid);
     // }
 
     array_foreach(&msg->uids, u) {
-        i_debug("EEEE -> uid->uid: [%d]", *u);
+        i_debug("UUU 222 -> uid->uid: [%d]", *u);
     }
 
     hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
@@ -177,5 +179,8 @@ push_notification_txn_msg_deinit_eventdata(struct push_notification_txn_msg *msg
                 (*mevent)->event->event->msg.free_msg(*mevent);
             }
         }
+    }
+    if (array_is_created(&msg->uids)) {
+        array_free(&msg->uids);
     }
 }

@@ -45,7 +45,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     // uid->uid = msg->uid;
     // uid->seq = msg->seq;
     u = p_strdup(txn->pool, msg->uid);
-    array_append(&msg->uids, &uid, 1);
+    array_append(&msg->uids, &u, 1);
     i_debug("EEEE -> uid->uid: %d", u);
     
     // array_foreach(&msg->uids, u){

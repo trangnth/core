@@ -40,7 +40,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     }
 
     struct push_notification_txn_msg_uid *uid;
-    const uint32_t *u;
+    uint32_t *u;
     // uid = p_new(txn->pool, struct push_notification_txn_msg_uid, 1);
     // uid->uid = msg->uid;
     // uid->seq = msg->seq;

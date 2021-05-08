@@ -15,6 +15,7 @@ struct push_notification_txn_msg {
     uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
+    ARRAY(uint32_t *) uids;
 
     /* Private */
     unsigned int seq;

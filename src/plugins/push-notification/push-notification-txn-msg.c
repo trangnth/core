@@ -48,6 +48,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     u = msg->uid;
     // u = p_strdup(txn->pool, msg->uid);
     array_append(&msg->uids, &u, 1);
+    unsigned int len;
     len = array_count(&msg->uids);
     i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
     array_delete (&msg->uids, len-1, len);

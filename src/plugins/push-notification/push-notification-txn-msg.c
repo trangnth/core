@@ -52,10 +52,6 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     len = array_count(&msg->uids);
     i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
     // array_delete (&msg->uids, len-1, len);
-    
-    // array_foreach(&msg->uids, u){
-    //     i_debug ("UUU 22:  %d", u->uid);
-    // }
 
     array_foreach(&msg->uids, u) {
         i_debug("UUU 222 -> uid->uid: [%d]", *u);
@@ -107,6 +103,10 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
             }
         }
         i_debug ("JJJJJJJJJJJJ - value->uid = %d, uid = %d", value->uid, uid);
+        const uint32_t *u;
+        array_foreach(&msg->uids, u) {
+            i_debug("JJJJ 222 -> uid->uid: [%d]", *u);
+        }
 
         /* uid_validity is only set in changes if message is new. */
         if (changes->uid_validity == 0) {

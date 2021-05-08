@@ -11,19 +11,12 @@ struct push_notification_txn_event;
 
 ARRAY_DEFINE_TYPE(msg_uid, const uint32_t *);
 
-struct push_notification_txn_msg_uid {
-    uint32_t *uid;
-    /* Private */
-    unsigned int *seq;
-};
-
 struct push_notification_txn_msg {
     const char *mailbox;
     uint32_t uid;
     uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
-    // ARRAY(struct push_notification_txn_msg_uid *) uids;
     ARRAY_TYPE(msg_uid) uids;
 
     /* Private */

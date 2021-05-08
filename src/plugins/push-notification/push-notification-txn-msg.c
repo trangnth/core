@@ -36,7 +36,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
 
     if (!array_is_created(&msg->uids)) {
         i_debug ("pppppp - msg->uids - array_isn't_created");
-        p_array_init(&msg->uids, txn->pool, 2);
+        p_array_init(&msg->uids, txn->pool, 4);
     }
 
     struct push_notification_txn_msg_uid *uid, *u;

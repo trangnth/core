@@ -36,7 +36,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
 
     if (!array_is_created(&msg->uids)) {
         i_debug ("pppppp - msg->uids - array_isn't_created");
-        p_array_init(&msg->uids, txn->pool, 4);
+        p_array_init(&msg->uids, txn->pool, 2);
     }
 
     struct push_notification_txn_msg_uid *uid, *u;
@@ -46,9 +46,9 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     array_append(&msg->uids, &uid, 1);
     i_debug("EEEE -> uid->uid: %d", uid->uid);
     
-    // array_foreach(&msg->uids, u){
-    //     i_debug ("UUU 22:  %d", u->uid);
-    // }
+    array_foreach(&msg->uids, u){
+        i_debug ("UUU 22:  %d", u->uid);
+    }
 
     hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
                         msg);

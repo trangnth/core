@@ -54,9 +54,9 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     //     i_debug ("UUU 22:  %d", u->uid);
     // }
 
-    // array_foreach(&msg->uids, u) {
-    //     i_debug("EEEE -> uid->uid: [%d]", *u);
-    // }
+    array_foreach(&msg->uids, u) {
+        i_debug("EEEE -> uid->uid: [%d]", *u);
+    }
 
     hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
                         msg);

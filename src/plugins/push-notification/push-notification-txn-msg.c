@@ -23,8 +23,8 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
         hash_table_create_direct(&txn->messages, txn->pool, 4);
     }
 
-    if (msg == NULL) {
-    // if (TRUE) {
+    // if (msg == NULL) {
+    if (TRUE) {
         msg = p_new(txn->pool, struct push_notification_txn_msg, 1);
         msg->mailbox = mailbox_get_vname(mail->box);
     }

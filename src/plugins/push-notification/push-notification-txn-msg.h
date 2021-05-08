@@ -9,13 +9,19 @@ struct push_notification_event_config;
 struct push_notification_txn;
 struct push_notification_txn_event;
 
+struct push_notification_txn_msg_uid {
+    uint32_t uid;
+    /* Private */
+    unsigned int seq;
+}
+
 struct push_notification_txn_msg {
     const char *mailbox;
     uint32_t uid;
     uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
-    ARRAY(uint32_t) uids;
+    ARRAY(struct push_notification_txn_msg_uid *) uids;
 
     /* Private */
     unsigned int seq;

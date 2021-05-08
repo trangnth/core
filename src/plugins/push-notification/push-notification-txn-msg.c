@@ -23,24 +23,29 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
         hash_table_create_direct(&txn->messages, txn->pool, 4);
     }
 
-    // if (msg == NULL) {
-    if (TRUE) {
+    if (msg == NULL) {
+    // if (TRUE) {
         msg = p_new(txn->pool, struct push_notification_txn_msg, 1);
         msg->mailbox = mailbox_get_vname(mail->box);
-        /* Save sequence number - used to determine UID later. */
-        msg->seq = txn->t->save_count;
-        msg->uid = mail->uid;
-        i_debug("EEEE - %d", msg->uid);
-        array_append(&msg->uids, msg->uid, 1);
-        
-        uint32_t u;
-        array_foreach(&msg->uids, u){
-            i_debug ("UUU 22:  %d", u);
-        }
-
-        hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
-                          msg);
     }
+
+    /* Save sequence number - used to determine UID later. */
+    msg->seq = txn->t->save_count;
+    msg->uid = mail->uid;
+    i_debug("EEEE - uid = %d, seq = %d", msg->uid, msg->seq);
+    struct push_notification_txn_msg_uid uid;
+    uid->uid = msg->uid;
+    uid->seq = msg->seq;
+    array_append(&msg->uids, uid, 1);
+    
+    uint32_t u;
+    array_foreach(&msg->uids, u){
+        i_debug ("UUU 22:  %d", u->uid);
+    }
+
+    hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
+                        msg);
+    
 
     return msg;
 }

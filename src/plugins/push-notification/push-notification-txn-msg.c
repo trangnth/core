@@ -95,19 +95,29 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
     //     uid_validity = changes->uid_validity;
     // }
 
-
+    int check;
     while (hash_table_iterate(hiter, ptxn->messages, &key, &value)) {
+        check = 0;
         if (value->uid == 0) {
             if (seq_range_array_iter_nth(&siter, value->seq, &uid)) {
                 value->uid = uid;
             }
+            check = 1;
         }
         unsigned int len;
         len = array_count(&value->uids);
-        i_debug ("JJJJJJJJJJJJ - value->uid = %d, uid = %d, len_uids = %d", value->uid, uid, len);
-        uint32_t *u;
-        array_foreach(&value->uids, u) {
-            i_debug("JJJJ 222 -> value->uid: [%d]", *u);
+        i_debug ("JJJJJJJJJJJJ - value->uid = %d, uid = %d, len_uids = %d, event", value->uid, uid, len );
+        uint32_t *u, *ui;
+        ui = value->uid;
+        //array_foreach(&value->uids, u) {
+        //    i_debug("JJJJ 222 -> value->uid: [%d]", *u);
+        //    if (len == 1){
+        //        check = 1;
+        //        i_debug("KKK 222: len =  %u", len);
+        //    }
+        //}
+        if (check == 1) {
+            array_append(&value->uids, &ui, 1);
         }
 
         /* uid_validity is only set in changes if message is new. */

@@ -14,7 +14,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
                                  struct mail *mail)
 {
     struct push_notification_txn_msg *msg = NULL;
-    i_debug ("EEEEEEEEE - push_notification_txn_msg_create");
+    // i_debug ("EEEEEEEEE - push_notification_txn_msg_create");
 
     if (hash_table_is_created(txn->messages)) {
         msg = hash_table_lookup(txn->messages,
@@ -45,7 +45,7 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     array_append(&msg->uids, &u, 1);
     unsigned int len;
     len = array_count(&msg->uids);
-    i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
+    // i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
     // array_delete (&msg->uids, len-1, len);
 
     // array_foreach(&msg->uids, u) {

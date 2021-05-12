@@ -32,7 +32,7 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct push_notification_driver_txn *dtxn;
     struct push_notification_driver_user **duser;
     struct mail_storage *storage;
-    i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
+    // i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
     if (ptxn->initialized) {
         return;

@@ -66,7 +66,7 @@ push_notification_event_flagsset_get_data(struct push_notification_txn *ptxn,
 {
     struct push_notification_event_flagsset_data *data;
 
-    i_debug ("HHHHHHHHm - push_notification_event_flagsset_get_data");
+    // i_debug ("HHHHHHHHm - push_notification_event_flagsset_get_data");
 
     data = push_notification_txn_msg_get_eventdata(msg, EVENT_NAME);
     if (data == NULL) {

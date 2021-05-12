@@ -24,7 +24,6 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     }
 
     if (msg == NULL) {
-    // if (TRUE) {
         msg = p_new(txn->pool, struct push_notification_txn_msg, 1);
         msg->mailbox = mailbox_get_vname(mail->box);
     }
@@ -32,35 +31,30 @@ push_notification_txn_msg_create(struct push_notification_txn *txn,
     /* Save sequence number - used to determine UID later. */
     msg->seq = txn->t->save_count;
     msg->uid = mail->uid;
-    i_debug("EEEE - uid = %d, seq = %d", msg->uid, msg->seq);
+    // i_debug("EEEE - uid = %d, seq = %d", msg->uid, msg->seq);
 
     if (!array_is_created(&msg->uids)) {
-        i_debug ("pppppp - msg->uids - array_isn't_created");
+        // i_debug ("pppppp - msg->uids - array_isn't_created");
         p_array_init(&msg->uids, txn->pool, 4);
     }
 
     struct push_notification_txn_msg_uid *uid;
     uint32_t *u;
-    // uid = p_new(txn->pool, struct push_notification_txn_msg_uid, 1);
-    // uid->uid = msg->uid;
-    // uid->seq = msg->seq;
     
     u = msg->uid;
-    // u = p_strdup(txn->pool, msg->uid);
     array_append(&msg->uids, &u, 1);
     unsigned int len;
     len = array_count(&msg->uids);
     i_debug("EEEE -> uid->uid: %d, len: %d", u, len);
     // array_delete (&msg->uids, len-1, len);
 
-    array_foreach(&msg->uids, u) {
-        i_debug("UUU 222 -> uid->uid: [%d]", *u);
-    }
+    // array_foreach(&msg->uids, u) {
+    //     i_debug("UUU 222 -> uid->uid: [%d]", *u);
+    // }
 
     hash_table_insert(txn->messages, POINTER_CAST(txn->t->save_count + 1),
                         msg);
     
-
     return msg;
 }
 
@@ -147,7 +141,7 @@ push_notification_txn_msg_get_eventdata(struct push_notification_txn_msg *msg,
 {
     struct push_notification_txn_event **mevent;
 
-    i_debug ("TOWOWOW - push_notification_txn_msg_get_eventdata - event_name: %s, uid: %d", event_name, msg->uid);
+    // i_debug ("TOWOWOW - push_notification_txn_msg_get_eventdata - event_name: %s, uid: %d", event_name, msg->uid);
     if (array_is_created(&msg->eventdata)) {
         array_foreach_modifiable(&msg->eventdata, mevent) {
             if (strcmp((*mevent)->event->event->name, event_name) == 0) {

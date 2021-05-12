@@ -115,9 +115,9 @@ push_notification_trigger_msg_common(struct push_notification_txn *txn,
                                      struct push_notification_txn_msg **msg,
                                      enum push_notification_event_trigger trigger)
 {
-    i_debug ("DDDDDD - push_notification_trigger_msg_common");
-    // if (*msg == NULL) {
-    if (TRUE) {
+    // i_debug ("DDDDDD - push_notification_trigger_msg_common");
+    if (*msg == NULL) {
+    // if (TRUE) {
         *msg = push_notification_txn_msg_create(txn, mail);
     }
 
@@ -188,12 +188,11 @@ push_notification_trigger_msg_flag_change(struct push_notification_txn *txn,
                                           struct push_notification_txn_msg *msg,
                                           enum mail_flags old_flags)
 {
-    i_debug ("GGGGGG - push_notification_trigger_msg_flag_change");
+    // i_debug ("GGGGGG - push_notification_trigger_msg_flag_change");
     struct push_notification_event_config **ec;
 
     push_notification_trigger_msg_common(txn, mail, &msg,
                                          PUSH_NOTIFICATION_EVENT_TRIGGER_MSG_FLAGCHANGE);
-    i_debug ("GGGGG 2222 - push_notification_trigger_msg_flag_change");
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
             if ((*ec)->event->msg_triggers.flagchange != NULL) {

@@ -88,21 +88,6 @@ static void push_notification_event_flagsset_flags_event(
     struct mail *mail,
     enum mail_flags old_flags)
 {
-    // test 
-    struct list_push_notification_txn_context {
-        // struct push_notification_txn *ptxn;
-        struct mail_log_message *messages, *messages_tail;
-    };
-    // struct mail_log_mail_txn_context *ctx =
-	// 	(struct mail_log_mail_txn_context *)ptxn;
-    // end test
-    // mail_log_append_mail_message(ctx, mail,
-	// 				     MAIL_LOG_EVENT_FLAG_CHANGE,
-	// 				     "flag_change");
-
-
-
-
     struct push_notification_event_flagsset_config *config =
         (struct push_notification_event_flagsset_config *)ec->config;
     struct push_notification_event_flagsset_data *data;
@@ -116,46 +101,42 @@ static void push_notification_event_flagsset_flags_event(
 
     flags = mail_get_flags(mail);
 
-    string_t *texta;
-    texta = t_str_new(128);
-    // str_append(texta, "trang na ");
-    if ((flags & MAIL_ANSWERED) != 0)
-        str_append(texta, "\\\\Answered, ");
-    if ((flags & MAIL_FLAGGED) != 0)
-        str_append(texta, "\\\\Flagged, ");
-    if ((flags & MAIL_DELETED) != 0)
-        str_append(texta, "\\\\Deleted, ");
-    if ((flags & MAIL_SEEN) != 0)
-        str_append(texta, "\\\\Seen, ");
-    if ((flags & MAIL_DRAFT) != 0)
-        str_append(texta, "\\\\Draft, ");
-    if ((flags & MAIL_RECENT) != 0)
-        str_append(texta, "\\\\Recent, ");
+    // string_t *texta;
+    // texta = t_str_new(128);
+    // // str_append(texta, "trang na ");
+    // if ((flags & MAIL_ANSWERED) != 0)
+    //     str_append(texta, "\\\\Answered, ");
+    // if ((flags & MAIL_FLAGGED) != 0)
+    //     str_append(texta, "\\\\Flagged, ");
+    // if ((flags & MAIL_DELETED) != 0)
+    //     str_append(texta, "\\\\Deleted, ");
+    // if ((flags & MAIL_SEEN) != 0)
+    //     str_append(texta, "\\\\Seen, ");
+    // if ((flags & MAIL_DRAFT) != 0)
+    //     str_append(texta, "\\\\Draft, ");
+    // if ((flags & MAIL_RECENT) != 0)
+    //     str_append(texta, "\\\\Recent, ");
     
-    const char *const *keywords = mail_get_keywords(mail);
-    if (keywords != NULL) {
-		/* we have keywords too */
-		while (*keywords != NULL) {
-            str_append(texta, "$");
-			str_append(texta, *keywords);
-			str_append_c(texta, ', ');
-			keywords++;
-		}
-	}
+    // const char *const *keywords = mail_get_keywords(mail);
+    // if (keywords != NULL) {
+	// 	/* we have keywords too */
+	// 	while (*keywords != NULL) {
+    //         str_append(texta, "$");
+	// 		str_append(texta, *keywords);
+	// 		str_append_c(texta, ', ');
+	// 		keywords++;
+	// 	}
+	// }
 
+    // str_truncate(texta, str_len(texta)-1);
+    // i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
 
-    str_truncate(texta, str_len(texta)-1);
-    i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
     string_t *textb;
     textb = t_str_new(128);
     imap_write_flags(textb, flags,
 				 mail_get_keywords(mail));
     // str_truncate(texta, str_len(texta)-2);
     i_debug ("FFFFFFFFFFFF - flags2: %s", str_c(textb));
-
-
-
-
 
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {
@@ -179,13 +160,9 @@ static void push_notification_event_flagsset_flags_event(
 
     /* Only create data element if at least one flag was set. */
     if (flags_set) {
-        i_debug("FFFFFF 2222 - if flags_set ok");
         data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
         data->flags_set |= flags_set;
     }
-
-    // data = push_notification_event_flagsset_get_data(ptxn, msg, ec);
-    // data->flags_set |= flags_set;
 }
 
 static void push_notification_event_flagsset_keywords_event(
@@ -195,7 +172,7 @@ static void push_notification_event_flagsset_keywords_event(
     struct mail *mail,
     const char *const *old_keywords)
 {
-    i_debug ("KKKKKm - push_notification_event_flagsset_keywords_event");
+    // i_debug ("KKKKKm - push_notification_event_flagsset_keywords_event");
     struct push_notification_event_flagsset_data *data;
     const char *k, *const *keywords, *const *op;
 

@@ -34,9 +34,6 @@ push_notification_transaction_init(struct push_notification_txn *ptxn)
     struct mail_storage *storage;
     i_debug ("AAAAAAAAAAA - push_notification_transaction_init");
 
-    // struct push_notification_txn *p;
-    
-
     if (ptxn->initialized) {
         return;
     }
@@ -105,7 +102,7 @@ static void push_notification_transaction_end
 (struct push_notification_txn *ptxn, bool success)
 {
     struct push_notification_driver_txn **dtxn;
-    i_debug("KKKKKKKKK - push_notification_transaction_end");
+    // i_debug("KKKKKKKKK - push_notification_transaction_end");
 
     if (ptxn->initialized) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
@@ -122,7 +119,7 @@ static void push_notification_transaction_commit
 (void *txn, struct mail_transaction_commit_changes *changes)
 {
     struct push_notification_txn *ptxn = (struct push_notification_txn *)txn;
-    i_debug ("KKKKKKKKKK - mail_transaction_commit_changes");
+    // i_debug ("KKKKKKKKKK - mail_transaction_commit_changes");
 
     if (changes == NULL) {
         push_notification_txn_mbox_end(ptxn);
@@ -178,7 +175,6 @@ static void push_notification_mailbox_subscribe(struct mailbox *box,
 
 static void push_notification_mail_save(void *txn, struct mail *mail)
 {
-    i_debug ("BBBBBBBBBBBBB - push_notification_mail_save");
     struct push_notification_txn *ptxn = txn;
 
     push_notification_transaction_init(ptxn);
@@ -210,7 +206,7 @@ static void
 push_notification_mail_update_flags(void *txn, struct mail *mail,
                                     enum mail_flags old_flags)
 {
-    i_debug ("BBBBBBBBBBBBB - push_notification_mail_update_flags");
+    // i_debug ("BBBBBBBBBBBBB - push_notification_mail_update_flags");
 
     struct push_notification_txn *ptxn = txn;
 

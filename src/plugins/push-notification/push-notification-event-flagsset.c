@@ -131,12 +131,12 @@ static void push_notification_event_flagsset_flags_event(
     // str_truncate(texta, str_len(texta)-1);
     // i_debug ("FFFFFFFFFFFF - flags: %s", str_c(texta));
 
-    // string_t *textb;
-    // textb = t_str_new(128);
-    // imap_write_flags(textb, flags,
-	// 			 mail_get_keywords(mail));
-    // // str_truncate(texta, str_len(texta)-2);
-    // i_debug ("FFFFFFFFFFFF - flags2: %s", str_c(textb));
+    string_t *textb;
+    textb = t_str_new(128);
+    imap_write_flags(textb, flags,
+				 mail_get_keywords(mail));
+    // str_truncate(texta, str_len(texta)-2);
+    i_debug ("FFFFFFFFFFFF - flags2: %s", str_c(textb));
 
 
     for (i = 0; i < N_ELEMENTS(flag_check_always); i++) {

@@ -119,7 +119,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         data->date = date;
         data->date_tz = tz;
     }
-
+    i_debug ("TRAAAAAAA - data->subject: %s", data->subject);
     if ((data->snippet == NULL) &&
         (config->flags & PUSH_NOTIFICATION_MESSAGE_BODY_SNIPPET) &&
         (mail_get_special(mail, MAIL_FETCH_BODY_SNIPPET, &value) >= 0)) {
@@ -127,6 +127,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         i_assert(value[0] != '\0');
         data->snippet = p_strdup(ptxn->pool, value + 1);
     }
+    i_debug ("TRAAAAAAA - data->snipet: %s", data->snippet);
     i_debug ("TRAAAAAAA - FINISHED");
 }
 

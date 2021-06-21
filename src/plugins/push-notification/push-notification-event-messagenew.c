@@ -127,6 +127,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         i_assert(value[0] != '\0');
         data->snippet = p_strdup(ptxn->pool, value + 1);
     }
+    i_debug ("TRAAAAAAA - FINISHED");
 }
 
 

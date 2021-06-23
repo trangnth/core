@@ -124,12 +124,7 @@ push_notification_event_messagenew_event(struct push_notification_txn *ptxn,
         (config->flags & PUSH_NOTIFICATION_MESSAGE_BODY_SNIPPET) &&
         (mail_get_special(mail, MAIL_FETCH_BODY_SNIPPET, &value) >= 0)) {
         /* [0] contains the snippet algorithm, skip over it */
-        __try {
-            i_error("TRAAAAA - mail_get_special body snippet ok");
-        }__except{
-            i_error("TRAAAAA - mail_get_special body snippet ok2");
-        }
-
+        i_error("TRAAAAA - mail_get_special body snippet ok");
         i_assert(value[0] != '\0');
         data->snippet = p_strdup(ptxn->pool, value + 1);
     }

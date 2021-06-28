@@ -22,31 +22,11 @@ push_notification_txn_mbox_create(struct push_notification_txn *txn,
 }
 
 void
-push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
-                               struct mail_transaction_commit_changes *changes)
+push_notification_txn_mbox_end(struct push_notification_txn *ptxn)
 {
     struct push_notification_driver_txn **dtxn;
-    // struct hash_iterate_context *hiter;
-    // void *key;
-    // struct mailbox_status status;
-    // struct push_notification_txn_mbox *value;
-    i_debug ("push_notification_txn_mbox_end - uidvalidity:");
-
-    // if (!hash_table_is_created(ptxn->messages)) {
-    //     return;
-    // }
-    // hiter = hash_table_iterate_init(ptxn->messages);
 
     if (ptxn->mbox_txn != NULL) {
-        // hash_table_iterate(hiter, ptxn->messages, &key, &value);
-        // if (changes->uid_validity == 0) {
-        // mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-        // value->uid_validity = status.uidvalidity;
-        // i_debug ("push_notification_txn_mbox_end - MSG234234 - uidvalidity %d", status.uidvalidity);
-        // } else {
-        //     value->uid_validity = changes->uid_validity;
-        // }
-
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
             if ((*dtxn)->duser->driver->v.process_mbox != NULL) {
                 (*dtxn)->duser->driver->v.process_mbox(*dtxn, ptxn->mbox_txn);
@@ -54,9 +34,6 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
         }
 
         push_notification_txn_mbox_deinit_eventdata(ptxn->mbox_txn);
-
-
-        // hash_table_iterate_deinit(&hiter);
     }
 }
 

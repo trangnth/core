@@ -41,7 +41,7 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
         // hash_table_iterate(hiter, ptxn->messages, &key, &value);
         // if (changes->uid_validity == 0) {
         mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-        value->uid_validity = status.uidvalidity;
+        // value->uid_validity = status.uidvalidity;
         i_debug ("push_notification_txn_mbox_end - MSG234234 - uidvalidity %u", status.uidvalidity);
         // } else {
         //     value->uid_validity = changes->uid_validity;

@@ -70,6 +70,9 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
     uint32_t uid;
     struct push_notification_txn_msg *value;
 
+    mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+    i_debug("JJ push_notification_txn_msg_end: %d", status.uidvalidity);
+
     if (!hash_table_is_created(ptxn->messages)) {
         return;
     }
@@ -122,8 +125,6 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
             value->uid_validity = changes->uid_validity;
         }
 
-        mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-        i_debug("JJ push_notification_txn_msg_end: %d", status.uidvalidity);
 
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
             if ((*dtxn)->duser->driver->v.process_msg != NULL) {

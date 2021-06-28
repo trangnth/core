@@ -1,6 +1,7 @@
 /* Copyright (c) 2015-2016 Dovecot authors, see the included COPYING file */
 
 #include "lib.h"
+#include "mail-storage.h"
 
 #include "push-notification-drivers.h"
 #include "push-notification-events.h"

@@ -120,9 +120,9 @@ static void push_notification_transaction_commit
 {
     struct push_notification_txn *ptxn = (struct push_notification_txn *)txn;
     // i_debug ("KKKKKKKKKK - mail_transaction_commit_changes");
-
+    
     if (changes == NULL) {
-        push_notification_txn_mbox_end(ptxn);
+        push_notification_txn_mbox_end(ptxn, changes);
     } else {
         push_notification_txn_msg_end(ptxn, changes);
     }

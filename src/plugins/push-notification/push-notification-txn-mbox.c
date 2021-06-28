@@ -28,7 +28,7 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
     struct push_notification_driver_txn **dtxn;
     struct mailbox_status status;
     struct push_notification_txn_msg *value;
-    i_debug ("push_notification_txn_mbox_end - uidvalidity: %u", changes->uid_validity)
+    i_debug ("push_notification_txn_mbox_end - uidvalidity: %u", changes->uid_validity);
 
     if (ptxn->mbox_txn != NULL) {
         while (hash_table_iterate(hiter, ptxn->messages, &key, &value)) {

@@ -28,7 +28,7 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn)
     struct mailbox_status status;
 
     mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-    i_debug("JJ push_notification_txn_msg_end: %d", status.uidvalidity);
+    i_debug("JJ push_notification_txn_mbox_end: %d", status.uidvalidity);
 
     if (ptxn->mbox_txn != NULL) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {

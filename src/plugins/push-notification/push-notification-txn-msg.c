@@ -70,9 +70,6 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
     uint32_t uid;
     struct push_notification_txn_msg *value;
 
-    mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-    i_debug("JJ push_notification_txn_msg_end: %d", status.uidvalidity);
-
     if (!hash_table_is_created(ptxn->messages)) {
         return;
     }
@@ -94,6 +91,10 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
 
     int check;
     while (hash_table_iterate(hiter, ptxn->messages, &key, &value)) {
+
+        mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+        i_debug("JJ push_notification_txn_msg_end: %d", status.uidvalidity);
+
         check = 0;
         if (value->uid == 0) {
             if (seq_range_array_iter_nth(&siter, value->seq, &uid)) {

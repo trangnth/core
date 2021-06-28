@@ -44,6 +44,7 @@ static void push_notification_event_mailboxcreate_event(
         data->uid_validity = 0;
     }
     // data->uid_validity = status.uidvalidity;
+    i_debug ("TRABG3333 - uidvalidity %u", status.uidvalidity);
 
     push_notification_txn_mbox_set_eventdata(ptxn, mbox, ec, data);
 }

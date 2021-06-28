@@ -41,7 +41,7 @@ static void push_notification_event_mailboxcreate_event(
         mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
         data->uid_validity = status.uidvalidity;
     } else {
-        value->uid_validity = 0;
+        data->uid_validity = 0;
     }
     // data->uid_validity = status.uidvalidity;
 

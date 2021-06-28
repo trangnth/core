@@ -121,6 +121,7 @@ push_notification_txn_msg_end(struct push_notification_txn *ptxn,
             i_debug ("MSG234234 - uidvalidity %u", status.uidvalidity);
         } else {
             value->uid_validity = changes->uid_validity;
+            i_debug ("MSG kkkkk 234234 - uidvalidity %u", status.uidvalidity);
         }
 
         array_foreach_modifiable(&ptxn->drivers, dtxn) {

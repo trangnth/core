@@ -34,10 +34,16 @@ static void push_notification_event_mailboxcreate_event(
         i_debug ("TRABG - uidvalidity %u", status.uidvalidity);
     }
     i_debug ("TRABG222 - uidvalidity %u", status.uidvalidity);
-
     data = p_new(ptxn->pool,
                  struct push_notification_event_mailboxcreate_data, 1);
-    data->uid_validity = status.uidvalidity;
+
+    if (status.uidvalidity == 0) {
+        mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+        data->uid_validity = status.uidvalidity;
+    } else {
+        value->uid_validity = 0;
+    }
+    // data->uid_validity = status.uidvalidity;
 
     push_notification_txn_mbox_set_eventdata(ptxn, mbox, ec, data);
 }

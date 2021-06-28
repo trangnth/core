@@ -40,11 +40,12 @@ static void push_notification_event_mailboxcreate_event(
     if (status.uidvalidity == 0) {
         mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
         data->uid_validity = status.uidvalidity;
+        i_debug ("TRABG3333 - uidvalidity %u", status.uidvalidity);
     } else {
         data->uid_validity = 0;
     }
     // data->uid_validity = status.uidvalidity;
-    i_debug ("TRABG3333 - uidvalidity %u", status.uidvalidity);
+    i_debug ("TRABG4444 - uidvalidity %u", status.uidvalidity);
 
     push_notification_txn_mbox_set_eventdata(ptxn, mbox, ec, data);
 }

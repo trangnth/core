@@ -7,6 +7,7 @@
 struct push_notification_event_mailboxdelete_data {
     /* Can only be true. */
     bool deleted;
+    uint32_t uid_validity;
 };
 
 

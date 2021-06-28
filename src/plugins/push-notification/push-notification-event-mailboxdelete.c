@@ -23,9 +23,18 @@ static void push_notification_event_mailboxdelete_event(
     struct push_notification_txn_mbox *mbox)
 {
     struct push_notification_event_mailboxdelete_data *data;
+    struct mailbox_status status;
+
+    if (mailbox_get_status(ptxn->mbox, STATUS_UIDVALIDITY, &status) < 0) {
+        i_error(EVENT_NAME "Failed to get created mailbox '%s' uidvalidity: %s",
+                mailbox_get_vname(ptxn->mbox),
+                mailbox_get_last_error(ptxn->mbox, NULL));
+        status.uidvalidity = 0;
+    }
 
     data = p_new(ptxn->pool,
                  struct push_notification_event_mailboxdelete_data, 1);
+    data->uid_validity = status.uidvalidity;
     data->deleted = TRUE;
 
     push_notification_txn_mbox_set_eventdata(ptxn, mbox, ec, data);

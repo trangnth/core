@@ -25,8 +25,12 @@ void
 push_notification_txn_mbox_end(struct push_notification_txn *ptxn)
 {
     struct push_notification_driver_txn **dtxn;
+    struct mailbox_status status;
 
     if (ptxn->mbox_txn != NULL) {
+        mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+        i_debug ("KK - push_notification_event_mailboxcreate_event: %d", status.uidvalidity);
+
         array_foreach_modifiable(&ptxn->drivers, dtxn) {
             if ((*dtxn)->duser->driver->v.process_mbox != NULL) {
                 (*dtxn)->duser->driver->v.process_mbox(*dtxn, ptxn->mbox_txn);

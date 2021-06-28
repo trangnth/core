@@ -35,6 +35,7 @@ static void push_notification_event_mailboxcreate_event(
 
     data = p_new(ptxn->pool,
                  struct push_notification_event_mailboxcreate_data, 1);
+    mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status) < 0)
     data->uid_validity = status.uidvalidity;
 
     push_notification_txn_mbox_set_eventdata(ptxn, mbox, ec, data);

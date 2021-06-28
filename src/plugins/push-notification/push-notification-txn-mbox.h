@@ -8,6 +8,7 @@ struct push_notification_txn_event;
 
 struct push_notification_txn_mbox {
     const char *mailbox;
+    uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
 };

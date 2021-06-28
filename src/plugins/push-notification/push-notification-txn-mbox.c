@@ -29,7 +29,7 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
     struct hash_iterate_context *hiter;
     void *key;
     struct mailbox_status status;
-    struct push_notification_txn_msg *value;
+    struct push_notification_txn_mbox *value;
     i_debug ("push_notification_txn_mbox_end - uidvalidity: %u", changes->uid_validity);
 
     if (ptxn->mbox_txn != NULL) {

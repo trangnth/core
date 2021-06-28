@@ -8,7 +8,6 @@ struct push_notification_txn_event;
 
 struct push_notification_txn_mbox {
     const char *mailbox;
-    uint32_t uid_validity;
 
     ARRAY(struct push_notification_txn_event *) eventdata;
 };
@@ -18,8 +17,7 @@ struct push_notification_txn_mbox *
 push_notification_txn_mbox_create(struct push_notification_txn *txn,
                                   struct mailbox *box);
 void
-push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
-                               struct mail_transaction_commit_changes *changes);
+push_notification_txn_mbox_end(struct push_notification_txn *ptxn);
 
 void *
 push_notification_txn_mbox_get_eventdata(struct push_notification_txn_mbox *mbox,

@@ -24,10 +24,6 @@ static void push_notification_event_mailboxsubscribe_event(
     struct push_notification_txn_mbox *mbox)
 {
     struct push_notification_event_mailboxsubscribe_data *data;
-    struct mailbox_status status;
-
-    mailbox_get_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-    i_debug ("KK - push_notification_event_mailboxsubscribe_event: %d", status.uidvalidity);
 
     data = p_new(ptxn->pool,
                  struct push_notification_event_mailboxsubscribe_data, 1);

@@ -13,13 +13,10 @@ struct push_notification_txn_mbox *
 push_notification_txn_mbox_create(struct push_notification_txn *txn,
                                   struct mailbox *box)
 {
-    struct mailbox_status status;
     if (txn->mbox_txn == NULL) {
         txn->mbox_txn = p_new(txn->pool, struct push_notification_txn_mbox, 1);
         txn->mbox_txn->mailbox = mailbox_get_vname(box);
     }
-    mailbox_get_status(box, STATUS_UIDVALIDITY, &status);
-    i_debug("JJ push_notification_txn_mbox_end: %d", status.uidvalidity);
 
     return txn->mbox_txn;
 }
@@ -28,10 +25,6 @@ void
 push_notification_txn_mbox_end(struct push_notification_txn *ptxn)
 {
     struct push_notification_driver_txn **dtxn;
-    struct mailbox_status status;
-
-    mailbox_get_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
-    i_debug("JJ push_notification_txn_mbox_end: %d", status.uidvalidity);
 
     if (ptxn->mbox_txn != NULL) {
         array_foreach_modifiable(&ptxn->drivers, dtxn) {

@@ -28,9 +28,9 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
     struct push_notification_driver_txn **dtxn;
     // struct hash_iterate_context *hiter;
     // void *key;
-    struct mailbox_status status;
+    // struct mailbox_status status;
     // struct push_notification_txn_mbox *value;
-    i_debug ("push_notification_txn_mbox_end - uidvalidity: %u", changes->uid_validity);
+    i_debug ("push_notification_txn_mbox_end - uidvalidity:");
 
     // if (!hash_table_is_created(ptxn->messages)) {
     //     return;
@@ -40,9 +40,9 @@ push_notification_txn_mbox_end(struct push_notification_txn *ptxn,
     if (ptxn->mbox_txn != NULL) {
         // hash_table_iterate(hiter, ptxn->messages, &key, &value);
         // if (changes->uid_validity == 0) {
-        mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
+        // mailbox_get_open_status(ptxn->mbox, STATUS_UIDVALIDITY, &status);
         // value->uid_validity = status.uidvalidity;
-        i_debug ("push_notification_txn_mbox_end - MSG234234 - uidvalidity %u", status.uidvalidity);
+        // i_debug ("push_notification_txn_mbox_end - MSG234234 - uidvalidity %d", status.uidvalidity);
         // } else {
         //     value->uid_validity = changes->uid_validity;
         // }

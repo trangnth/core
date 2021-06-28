@@ -31,9 +31,9 @@ static void push_notification_event_mailboxcreate_event(
                 mailbox_get_vname(ptxn->mbox),
                 mailbox_get_last_error(ptxn->mbox, NULL));
         status.uidvalidity = 0;
-        i_debug ("TRABG - uidvalidity %u", status.uidvalidity)
+        i_debug ("TRABG - uidvalidity %u", status.uidvalidity);
     }
-    i_debug ("TRABG222 - uidvalidity %u", status.uidvalidity)
+    i_debug ("TRABG222 - uidvalidity %u", status.uidvalidity);
 
     data = p_new(ptxn->pool,
                  struct push_notification_event_mailboxcreate_data, 1);

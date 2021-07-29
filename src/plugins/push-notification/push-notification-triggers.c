@@ -117,13 +117,17 @@ push_notification_trigger_msg_common(struct push_notification_txn *txn,
 {
     i_debug ("DDDDDD - push_notification_trigger_msg_common");
     const char *value;
+
     
-    mail_get_first_header(mail, "Message-ID", &value);
-    i_debug ("TRAAAAAAA - data->msgid: %s", mail_get_first_header(mail, "Message-ID", &value));
     if (*msg == NULL) {
     // if (TRUE) {
         *msg = push_notification_txn_msg_create(txn, mail);
+        i_debug ("1");
     }
+
+    i_debug ("2");
+    mail_get_first_header(mail, "Message-ID", &value);
+    i_debug ("TRAAAAAAA - data->msgid: %s", mail_get_first_header(mail, "Message-ID", &value));
 
     txn->trigger |= trigger;
 }

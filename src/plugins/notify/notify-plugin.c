@@ -54,6 +54,10 @@ void notify_contexts_mail_save(struct mail *mail)
 {
 	struct notify_context *ctx;
 	struct notify_mail_txn *mail_txn;
+	const char *value;
+    i_debug ("2");
+    mail_get_first_header(mail, "Message-ID", &value);
+    i_debug ("notify_contexts_mail_save - data->msgid: %s", mail_get_first_header(mail, "Message-ID", &value));
 
 	for (ctx = ctx_list; ctx != NULL; ctx = ctx->next) {
 		if (ctx->v.mail_save == NULL)
@@ -80,6 +84,11 @@ void notify_contexts_mail_expunge(struct mail *mail)
 {
 	struct notify_context *ctx;
 	struct notify_mail_txn *mail_txn;
+	const char *value;
+    i_debug ("2");
+    mail_get_first_header(mail, "Message-ID", &value);
+    i_debug ("notify_contexts_mail_expunge - data->msgid: %s", mail_get_first_header(mail, "Message-ID", &value));
+
 
 	for (ctx = ctx_list; ctx != NULL; ctx = ctx->next) {
 		if (ctx->v.mail_expunge == NULL)

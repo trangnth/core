@@ -9,8 +9,6 @@
 #include "push-notification-events.h"
 #include "push-notification-txn-msg.h"
 
-#include "push-notification-event-message-common.h"
-
 
 #define EVENT_NAME "MessageExpunge"
 
@@ -28,14 +26,9 @@ static void push_notification_event_messageexpunge_debug_msg
 static void push_notification_event_messageexpunge_event(
     struct push_notification_txn *ptxn,
     struct push_notification_event_config *ec,
-    struct push_notification_txn_msg *msg,
-    struct mail *mail)
+    struct push_notification_txn_msg *msg)
 {
-    i_debug ("0001111 - push_notification_event_messageexpunge_event");
     struct push_notification_event_messageexpunge_data *data;
-    const char *value;
-
-    
 
     data = push_notification_txn_msg_get_eventdata(msg, EVENT_NAME);
     if (data == NULL) {
@@ -44,13 +37,6 @@ static void push_notification_event_messageexpunge_event(
         data->expunge = TRUE;
         push_notification_txn_msg_set_eventdata(ptxn, msg, ec, data);
     }
-
-    if ((data->msgid == NULL) &&
-        (mail_get_first_header(mail, "Message-ID", &value) >= 0)) {
-        data->msgid = p_strdup(ptxn->pool, value);
-    }
-
-    i_debug ("TRAAAAAAA - data->msgid: %s", data->msgid);
 }
 
 

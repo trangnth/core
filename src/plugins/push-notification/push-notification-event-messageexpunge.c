@@ -9,6 +9,8 @@
 #include "push-notification-events.h"
 #include "push-notification-txn-msg.h"
 
+#include "push-notification-event-message-common.h"
+
 
 #define EVENT_NAME "MessageExpunge"
 

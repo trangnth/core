@@ -7,6 +7,8 @@
 struct push_notification_event_messageexpunge_data {
     /* Can only be true. */
     bool expunge;
+    /* PUSH_NOTIFICATION_MESSAGE_HDR_MESSAGEID */
+    const char *msgid;
 };
 
 

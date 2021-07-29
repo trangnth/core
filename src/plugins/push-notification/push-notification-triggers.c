@@ -176,7 +176,7 @@ push_notification_trigger_msg_save_expunge(struct push_notification_txn *txn,
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
             if ((*ec)->event->msg_triggers.expunge != NULL) {
-                (*ec)->event->msg_triggers.expunge(txn, *ec, msg);
+                (*ec)->event->msg_triggers.expunge(txn, *ec, msg, mail);
             }
         }
     }

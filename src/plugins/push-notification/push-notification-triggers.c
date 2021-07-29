@@ -115,7 +115,9 @@ push_notification_trigger_msg_common(struct push_notification_txn *txn,
                                      struct push_notification_txn_msg **msg,
                                      enum push_notification_event_trigger trigger)
 {
-    // i_debug ("DDDDDD - push_notification_trigger_msg_common");
+    i_debug ("DDDDDD - push_notification_trigger_msg_common");
+    mail_get_first_header(mail, "Message-ID", &value);
+    i_debug ("TRAAAAAAA - data->msgid: %s", mail_get_first_header(mail, "Message-ID", &value));
     if (*msg == NULL) {
     // if (TRUE) {
         *msg = push_notification_txn_msg_create(txn, mail);
@@ -176,7 +178,7 @@ push_notification_trigger_msg_save_expunge(struct push_notification_txn *txn,
     if (array_is_created(&txn->events)) {
         array_foreach_modifiable(&txn->events, ec) {
             if ((*ec)->event->msg_triggers.expunge != NULL) {
-                (*ec)->event->msg_triggers.expunge(txn, *ec, msg, mail);
+                (*ec)->event->msg_triggers.expunge(txn, *ec, msg);
             }
         }
     }
